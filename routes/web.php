@@ -15,10 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 Route::get('/{controller}/{method?}',function($controller,$method='index',array $arguments = []){
     $app = app();
     $arguments['request']= request();
     $controller = $app->make('\App\Http\Controllers\\'.$controller.'Controller');
     return $controller->callAction($method, $arguments);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
