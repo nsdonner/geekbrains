@@ -1,0 +1,21 @@
+@import "_variables";
+header {
+	background-color: #f8f9fa;
+	.navbar {
+		height: 50px;
+		&>div {
+			display: flex;
+		}
+		.navbar-brand {
+			img {
+				height: 40px;
+			}
+		}
+	}
+}
+
+#header-bell {
+	.btn {
+		border-color: transparent;
+	}
+}

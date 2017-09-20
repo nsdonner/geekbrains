@@ -1,0 +1,12 @@
+.container-fluid {
+	padding: 0;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+@import "_variables.scss";
+@import "_header";
+@import "_main.scss";
+@import "_personalPage";

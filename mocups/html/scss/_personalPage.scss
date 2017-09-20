@@ -1,0 +1,42 @@
+@import "_variables";
+
+.col-md-4 {
+	height: 230px;
+}
+
+.user-name {
+	font-size: 30px;
+	padding: 15px 10px;
+}
+
+.tab-pane {
+	h4 {
+		padding-top: 10px;
+	}
+}
+
+.projects-tab {
+	border-bottom: 1px solid #E9ECF1;
+	padding-bottom: 10px;
+}
+
+.project-name {
+		font-size: 20px;
+		padding: 10px 5px 5px;
+	}
+
+.invite {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #e9ecef;
+	height: 50px;
+}
+
+#settings-tab {
+	form {
+		.btn {
+			margin-top: 10px;
+		}
+	}
+}
