@@ -30,9 +30,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //    return $controller->callAction($method, $arguments);
 //});
 Route::group(['middleware'=>'auth'],function(){
-   Route::match(['get','post'],'/cabinet/{method?}',function($method='index',array $arguments = []){
+   Route::match(['get','post'],'/id{id}/{method?}',function($id,$method='index',array $arguments = []){
         $app = app();
         $arguments['request']= request();
+        $arguments['id'] = $id;
         $controller = $app->make('\App\Http\Controllers\CabinetController');
         return $controller->callAction($method, $arguments);
    });

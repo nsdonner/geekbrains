@@ -1,12 +1,15 @@
 @extends('layout')
+@section('css')
+
+@stop
 
 @section('content')
 
     <main class="container">
         <div class="row">
-            <div class="col-md-4"><img class="img-thumbnail" src="{{ asset('/img/avatar.jpg')}}" alt="$user_name"></div>
+            <div class="col-md-4"><img class="img-thumbnail" src="{{ asset('/img/'.$photo)}}" alt="$user_name"></div>
             <div class="col-md-8">
-                <div class="user-name">Brain</div>
+                <div class="user-name">{{$name}}</div>
                 <ul class="nav nav-tabs" id="userTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#projects-tab" role="tab">Проекты</a>
@@ -51,15 +54,16 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="settings-tab" role="tabpanel">
-                        <form action="#">
+                        {!!  Form::open(['url' => '/id'.$id ,'method' =>'post' ]) !!}
+                        {!! Form::token() !!}
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputUserName" class="col-form-label">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="inputUserName" placeholder="$user-name">
+                                    <input type="text" name="name" class="form-control" id="inputUserName" value="{{$name}}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail" class="col-form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="$user-email">
+                                    <input type="email" name="email" class="form-control" id="inputEmail" value="{{$email}}">
                                 </div>
                             </div>
                             <div class="form-goup">
@@ -67,7 +71,7 @@
                                 <textarea class="form-control" id="inputBio" rows="2"></textarea>
                             </div>
                             <button class="btn btn-success" type="submit">Сохранить</button>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

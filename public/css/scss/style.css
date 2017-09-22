@@ -11,7 +11,7 @@ header {
   background-color: #f8f9fa; }
   /* line 4, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_header.scss */
   header .navbar {
-    height: 50px; }
+    height: 80px; }
     /* line 6, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_header.scss */
     header .navbar > div {
       display: flex; }
