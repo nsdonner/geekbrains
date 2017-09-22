@@ -1,0 +1,8 @@
+
+@mixin Martel($weight, $size) {
+  font: {
+    family: 'Martel', serif;
+    weight: $weight;
+    size: $size;
+  }
+}

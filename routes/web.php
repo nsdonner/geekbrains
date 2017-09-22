@@ -23,9 +23,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::get('/{controller}/{method?}',function($controller,$method='index',array $arguments = []){
-    $app = app();
-    $arguments['request']= request();
-    $controller = $app->make('\App\Http\Controllers\\'.$controller.'Controller');
-    return $controller->callAction($method, $arguments);
+//Route::get('/{controller}/{method?}',function($controller,$method='index',array $arguments = []){
+//    $app = app();
+//    $arguments['request']= request();
+//    $controller = $app->make('\App\Http\Controllers\\'.$controller.'Controller');
+//    return $controller->callAction($method, $arguments);
+//});
+Route::group(['middleware'=>'auth'],function(){
+   Route::match(['get','post'],'/cabinet/{method?}',function($method='index',array $arguments = []){
+        $app = app();
+        $arguments['request']= request();
+        $controller = $app->make('\App\Http\Controllers\CabinetController');
+        return $controller->callAction($method, $arguments);
+   });
 });

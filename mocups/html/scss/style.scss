@@ -6,7 +6,7 @@
 	cursor: pointer;
 }
 
-@import "_variables.scss";
-@import "_header";
-@import "_main.scss";
-@import "_personalPage";
+@import "scss/variables";
+@import "scss/header";
+@import "scss/main";
+@import "scss/personalPage";
