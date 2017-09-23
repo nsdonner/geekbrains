@@ -10,6 +10,15 @@
             <div class="col-md-4"><img class="img-thumbnail" src="{{ asset('/img/'.$photo)}}" alt="$user_name"></div>
             <div class="col-md-8">
                 <div class="user-name">{{$name}}</div>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <ul class="nav nav-tabs" id="userTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#projects-tab" role="tab">Проекты</a>
@@ -55,8 +64,7 @@
                     </div>
                     <div class="tab-pane" id="settings-tab" role="tabpanel">
                         {!!  Form::open(['url' => '/id'.$id ,'method' =>'post' ]) !!}
-                        {!! Form::token() !!}
-                            <div class="form-row">
+                            <div class="form row">
                                 <div class="form-group col-md-6">
                                     <label for="inputUserName" class="col-form-label">Имя пользователя</label>
                                     <input type="text" name="name" class="form-control" id="inputUserName" value="{{$name}}">
@@ -66,7 +74,7 @@
                                     <input type="email" name="email" class="form-control" id="inputEmail" value="{{$email}}">
                                 </div>
                             </div>
-                            <div class="form-goup">
+                            <div class="form-group">
                                 <label for="inputBio">О себе</label>
                                 <textarea class="form-control" id="inputBio" rows="2"></textarea>
                             </div>
