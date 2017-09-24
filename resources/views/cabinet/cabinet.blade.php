@@ -23,14 +23,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#projects-tab" role="tab">Проекты</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#invites-tab" role="tab">Приглашения <span class="badge badge-primary badge-pill">1</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#settings-tab" role="tab">Настройки</a>
-                    </li>
+                    @if($settings == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#invites-tab" role="tab">Приглашения <span class="badge badge-primary badge-pill">1</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#settings-tab" role="tab">Настройки</a>
+                        </li>
+                    @endif
                 </ul>
-
                 <div class="tab-content">
                     <div class="tab-pane active" id="projects-tab" role="tabpanel">
                         <div id="current-projects">
@@ -62,25 +63,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="settings-tab" role="tabpanel">
-                        {!!  Form::open(['url' => '/id'.$id ,'method' =>'post' ]) !!}
-                            <div class="form row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputUserName" class="col-form-label">Имя пользователя</label>
-                                    <input type="text" name="name" class="form-control" id="inputUserName" value="{{$name}}">
+                    @if($settings == 1)
+                        <div class="tab-pane" id="settings-tab" role="tabpanel">
+                            {!!  Form::open(['url' => '/id'.$id ,'method' =>'post' ]) !!}
+                                <div class="form row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputUserName" class="col-form-label">Имя пользователя</label>
+                                        <input type="text" name="name" class="form-control" id="inputUserName" value="{{$name}}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail" class="col-form-label">Email</label>
+                                        <input type="email" name="email" class="form-control" id="inputEmail" value="{{$email}}">
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail" class="col-form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" id="inputEmail" value="{{$email}}">
+                                <div class="form-group">
+                                    <label for="inputBio">О себе</label>
+                                    <textarea class="form-control" id="inputBio" rows="2"></textarea>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputBio">О себе</label>
-                                <textarea class="form-control" id="inputBio" rows="2"></textarea>
-                            </div>
-                            <button class="btn btn-success" type="submit">Сохранить</button>
-                        {!! Form::close() !!}
-                    </div>
+                                <button class="btn btn-success" type="submit">Сохранить</button>
+                            {!! Form::close() !!}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
