@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Проект</a>
@@ -51,9 +51,9 @@
                 @auth
                     <div id="header-bell"><button class="btn btn-outline-primary"><i class="fa fa-bell" aria-hidden="true"></i></button></div>
                     <div class="dropdown">
-                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$nameAuth}}</button>
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('profile',['id'=>$id]) }}">Личный кабинет</a>
+                                <a class="dropdown-item" href="{{ route('profile',['id'=>Auth::id()]) }}">Личный кабинет</a>
                                 <a href="{{ route('logout') }}" class="dropdown-item"
                                    onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{route('login')}}" class="btn">Войти</a>
+                    <a href="{{route('login')}}" class="btn btn-outline-primary">Войти</a>
                 @endauth
             </div>
         </nav>

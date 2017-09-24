@@ -65,7 +65,7 @@
                     </div>
                     @if($settings == 1)
                         <div class="tab-pane" id="settings-tab" role="tabpanel">
-                            {!!  Form::open(['url' => '/id'.$id ,'method' =>'post' ]) !!}
+                            {!!  Form::open(['url' => '/id'.Auth::id() ,'method' =>'post' ]) !!}
                                 <div class="form row">
                                     <div class="form-group col-md-6">
                                         <label for="inputUserName" class="col-form-label">Имя пользователя</label>
