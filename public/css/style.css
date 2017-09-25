@@ -1,56 +1,45 @@
-/* line 1, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/style.scss */
 .container-fluid {
   padding: 0; }
 
-/* line 5, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/style.scss */
+
 .btn {
   cursor: pointer; }
 
-/* line 2, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_header.scss */
 header {
   background-color: #f8f9fa; }
-    /* line 10, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_header.scss */
     header .navbar .navbar-brand img {
       height: 40px;
     }
     header .navbar .navbar-brand {
-      paddin:0;
+      padding:0;
       line-height:44px;
       vertical-align:bottom;
     }
 
-/* line 18, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_header.scss */
 #header-bell .btn {
   border-color: transparent; }
 
-/* line 1, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_main.scss */
 main {
   padding-top: 40px; }
 
-/* line 3, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_personalPage.scss */
 .col-md-4 {
   height: 230px; }
 
-/* line 7, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_personalPage.scss */
 .user-name {
   font-size: 30px;
   padding: 15px 10px; }
 
-/* line 13, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_personalPage.scss */
 .tab-pane h4 {
   padding-top: 10px; }
 
-/* line 18, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_personalPage.scss */
 .projects-tab {
   border-bottom: 1px solid #E9ECF1;
   padding-bottom: 10px; }
 
-/* line 23, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_personalPage.scss */
 .project-name {
   font-size: 20px;
   padding: 10px 5px 5px; }
 
-/* line 28, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_personalPage.scss */
 .invite {
   display: flex;
   justify-content: space-between;
@@ -58,8 +47,6 @@ main {
   border-bottom: 1px solid #e9ecef;
   height: 50px; }
 
-/* line 38, C:/Users/enhak/Documents/GeekUniversity/ideaHub/scss/_personalPage.scss */
 #settings-tab form .btn {
   margin-top: 10px; }
 
-/*# sourceMappingURL=style.css.map */
