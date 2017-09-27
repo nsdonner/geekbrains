@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="../../public/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../public/css/bootstrap.css">
+    <link rel="stylesheet" href="../../public/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../../public/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+
+        <nav class="navbar container navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="img/slider_screen.png" alt="idea">iDeaHub</a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Проект</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
+                    </li>
+                </ul>
+
+                <div id="header-bell">
+                    <button class="btn btn-outline-primary"><i class="fa fa-bell" aria-hidden="true"></i></button>
+                </div>
+                <a href="#" class="btn btn-outline-primary">Войти</a>
+            </div>
+        </nav>
+    </header>
+    <main id="project">
+        <div class="jumbotron">
+            <h2 class="display-4">Курсовой проект 2ой четверти</h2>
+            <hr class="jumbotron-hr">
+            <p class="lead">Нам необходимо выбрать идею курсового проекта</p>
+        </div>
+        <div id="project-menu">
+            <button class="btn btn-success">Добавить задачу</button>
+            <button class="btn btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+                Участники <span class="badge badge-default">9</span>
+            </button>
+        </div>
+        <div class="card-group">
+            <a href="#" class="card" id="brainstorming-card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <h4 class="card-title">Мозговой штурм</h4>
+                    <div class="card-text">
+                        <ul>
+                            <li>Главное — количество идей. Не делайте никаких ограничений</li>
+                            <li>Не критекуйте идеи</li>
+                            <li>Необычные и даже абсурдные идеи приветствуются</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer"></div>
+
+            </a>
+            <a href="#" class="card" id="discussion-card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Обсуждение</h4>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A eos exercitationem fugiat ratione.
+                        Dicta ducimus et ipsum labore officiis quasi quia repudiandae sapiente vitae voluptas. Accusamus
+                        at autem odit ratione.
+                    </p>
+
+                </div>
+                <div class="card-footer"></div>
+            </a>
+            <a href="#" class="card" id="vote-card">
+                <div class="card-header bg-success">
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Голосование</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi
+                        assumenda, atque aut, beatae eaque fuga fugiy.
+                    </p>
+                </div>
+                <div class="card-footer"></div>
+            </a>
+        </div>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>
