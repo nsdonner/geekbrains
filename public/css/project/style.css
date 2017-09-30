@@ -45,7 +45,7 @@ header {
 #project .jumbotron {
   margin: 0;
   border: 1px solid #e1e4e8;
-  background: #e6e6e6 url("img/project-add1.png") no-repeat 100% 100%; }
+  background: #e6e6e6 url("../../img/project-add1.png") no-repeat 100% 100%; }
 #project .card {
   color: #000;
   text-decoration: none; }
@@ -71,12 +71,12 @@ header {
     border: none; }
 
 #brainstorming-card .card-header {
-  background-image: url("img/brainstorming.jpg"); }
+  background-image: url("../../img/brainstorming.jpg"); }
 #brainstorming-card .card-footer {
   background: linear-gradient(-45deg, #ffee6e, #eda32f); }
 
 #discussion-card .card-header {
-  background-image: url("img/discussion.jpg"); }
+  background-image: url("../../img/discussion.jpg"); }
 #discussion-card .card-footer {
   background: linear-gradient(-45deg, #dc5d4c, #6d9cb8); }
 
