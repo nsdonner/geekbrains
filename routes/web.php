@@ -12,13 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $app = app();
+    $arguments['request']= request();
+    $controller = $app->make('\App\Http\Controllers\HomeController');
+    return $controller->callAction('index', $arguments);
 });
 
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 
