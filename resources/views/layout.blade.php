@@ -26,7 +26,7 @@
         }
     </style>
 </head>
-<body>
+<body class="container">
     <header>
 
         <nav class="navbar container navbar-toggleable-md navbar-light bg-faded">
@@ -73,7 +73,6 @@
     </header>
         @yield('content')
         <footer class="bg-dark"></footer>
-    </div>
 @yield('scripts')
 </body>
 </html>

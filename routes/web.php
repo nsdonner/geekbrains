@@ -37,4 +37,11 @@ Route::group(['middleware'=>'auth'],function(){
         $controller = $app->make('\App\Http\Controllers\CabinetController');
         return $controller->callAction($method, $arguments);
    }]);
+    Route::match(['get','post','delete'],'/project/{name?}/{method?}',['as' => 'project', function($name="",$method='index',array $arguments = []){
+        $app = app();
+        $arguments['request']= request();
+        $arguments['name'] = $name;
+        $controller = $app->make('\App\Http\Controllers\ProjectController');
+        return $controller->callAction($method, $arguments);
+    }]);
 });
