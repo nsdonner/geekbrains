@@ -6,6 +6,8 @@
 
 header {
   background-color: #f8f9fa; }
+  header .navbar {
+    height: 50px; }
     header .navbar > div {
       display: flex; }
     header .navbar .navbar-brand img {
@@ -46,18 +48,18 @@ header {
   margin: 0;
   border: 1px solid #e1e4e8;
   background: #e6e6e6 url("img/project-add1.png") no-repeat 100% 100%; }
-#project .card {
+#project .task {
   color: #000;
   text-decoration: none; }
-  #project .card .card-header {
+  #project .task .card-header {
     height: 80px;
     background-size: contain; }
-  #project .card .card-body {
+  #project .task .card-body {
     flex: 1 1 auto; }
-  #project .card .card-title {
+  #project .task .card-title {
     text-align: center;
     padding-top: 10px; }
-  #project .card p {
+  #project .task p {
     padding: 0 15px 10px; }
 
 #project-menu {
@@ -83,4 +85,14 @@ header {
 #vote-card .card-footer {
   background: linear-gradient(-45deg, #99ff17, #ab610a); }
 
-/*# sourceMappingURL=style.css.map */
+#ideas {
+  margin-top: 50px; }
+
+.idea {
+  margin-bottom: 20px; }
+  .idea .card-header {
+    display: flex;
+    padding: 1px 20px; }
+
+.card-creator img {
+  height: 48px; }

@@ -56,13 +56,13 @@
             <p class="lead">Нам необходимо выбрать идею курсового проекта</p>
         </div>
         <div id="project-menu">
-            <button class="btn btn-success">Добавить задачу</button>
+            <button class="btn btn-success">Добавить идею</button>
             <button class="btn btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i>
                 Участники <span class="badge badge-default">9</span>
             </button>
         </div>
-        <div class="card-group">
-            <a href="#" class="card" id="brainstorming-card">
+        <div id="tasks" class="card-group">
+            <div class="card task" id="brainstorming-card">
                 <div class="card-header"></div>
                 <div class="card-body">
                     <h4 class="card-title">Мозговой штурм</h4>
@@ -76,8 +76,8 @@
                 </div>
                 <div class="card-footer"></div>
 
-            </a>
-            <a href="#" class="card" id="discussion-card">
+            </div>
+            <div class="card task" id="discussion-card">
                 <div class="card-header">
                 </div>
                 <div class="card-body">
@@ -90,8 +90,8 @@
 
                 </div>
                 <div class="card-footer"></div>
-            </a>
-            <a href="#" class="card" id="vote-card">
+            </div>
+            <div class="card task" id="vote-card">
                 <div class="card-header bg-success">
                 </div>
                 <div class="card-body">
@@ -101,7 +101,157 @@
                     </p>
                 </div>
                 <div class="card-footer"></div>
-            </a>
+            </div>
+        </div>
+        <div id="ideas">
+            <div class="card idea">
+                <div class="card-header justify-content-between">
+                    <a class="card-creator" href="#"><img src="img/avatar.jpg" alt="idea">Константин</a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+                                <a class="nav-link active" id="v-pills-idea-first-tab" data-toggle="pill"
+                                   href="#v-pills-idea-first"
+                                   role="tab" aria-controls="v-pills-idea-first" aria-expanded="true">Название
+                                    проекта</a>
+                                <a class="nav-link" id="v-pills-idea-second-tab" data-toggle="pill"
+                                   href="#v-pills-idea-second"
+                                   role="tab" aria-controls="v-pills-idea-second" aria-expanded="true">Описание</a>
+                                <a class="nav-link" id="v-pills-idea-third-tab" data-toggle="pill"
+                                   href="#v-pills-idea-third"
+                                   role="tab" aria-controls="v-pills-idea-third" aria-expanded="true">Функционал для
+                                    реализации</a>
+                                <a class="nav-link" id="v-pills-idea-fourth-tab" data-toggle="pill"
+                                   href="#v-pills-idea-fourth"
+                                   role="tab" aria-controls="v-pills-fourth" aria-expanded="true">Предлагаемые
+                                    технологии</a>
+                                <a class="nav-link" id="v-pills-idea-fifth-tab" data-toggle="pill"
+                                   href="#v-pills-idea-fifth"
+                                   role="tab" aria-controls="v-pills-fifth" aria-expanded="true">Аналоги</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="v-pills-idea-first" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-first-tab">Парсер CDR Asterisk c веб-доступом
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-second" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-second-tab">АТС на базе ПО Asterisk складывает логи
+                                    обработаных вызовов в БД, предлагаю написать сервис для удобного их просмотра
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-third" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-third-tab">
+                                    <ol>
+                                        <li>Авторизация</li>
+                                        <li>Авторизация с телефона</li>
+                                        <li>Просмотр звонков за период</li>
+                                        <li>Просмотр звонков с фильтрами по номерам/длительности/статусу</li>
+                                        <li>Отдельный фильтр по направлениям (внутренние,
+                                            город/межгород/сотовые/международные)
+                                        </li>
+                                        <li>Предоставление данных в виде диаграмм и графиков, подсчет средней
+                                            статистики,
+                                            анализ данных
+                                        </li>
+                                        <li>Вывод данных в виде отчетного документа</li>
+                                        <li>Примерная стоимость звонков</li>
+                                        <li>Вывод баланса из сторонних источников(баланса у провайдера например)</li>
+                                        <li>Возможность коментировать вызовы, и направления/номера(сопоставление с
+                                            телефонной книжкой)
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-fourth" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-fourth-tab">php, mysql, html/css, js и его фрэймворки
+                                    по
+                                    построению различных таблиц и диаграмм
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-fifth" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-fifth-tab">
+                                    http://prog-it.github.io/Asterisk-CDR-Viewer-Mod/
+                                    http://www.asternic.net/demo/index.php?user=demo&password=demo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card idea">
+                <div class="card-header justify-content-between">
+                    <a class="card-creator" href="#"><img src="img/avatar.jpg" alt="idea">Константин</a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab1" role="tablist">
+                                <a class="nav-link active" id="v-pills-idea-first-tab1" data-toggle="pill"
+                                   href="#v-pills-idea-first1"
+                                   role="tab" aria-controls="v-pills-idea-first1" aria-expanded="true">Название
+                                    проекта</a>
+                                <a class="nav-link" id="v-pills-idea-second-tab1" data-toggle="pill"
+                                   href="#v-pills-idea-second1"
+                                   role="tab" aria-controls="v-pills-idea-second1" aria-expanded="true">Описание</a>
+                                <a class="nav-link" id="v-pills-idea-third-tab1" data-toggle="pill"
+                                   href="#v-pills-idea-third1"
+                                   role="tab" aria-controls="v-pills-idea-third1" aria-expanded="true">Функционал для
+                                    реализации</a>
+                                <a class="nav-link" id="v-pills-idea-fourth-tab1" data-toggle="pill"
+                                   href="#v-pills-idea-fourth1"
+                                   role="tab" aria-controls="v-pills-fourth1" aria-expanded="true">Предлагаемые
+                                    технологии</a>
+                                <a class="nav-link" id="v-pills-idea-fifth-tab1" data-toggle="pill"
+                                   href="#v-pills-idea-fifth1"
+                                   role="tab" aria-controls="v-pills-fifth1" aria-expanded="true">Аналоги</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent1">
+                                <div class="tab-pane fade show active" id="v-pills-idea-first1" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-first-tab1">Парсер CDR Asterisk c веб-доступом
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-second1" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-second-tab1">АТС на базе ПО Asterisk складывает логи
+                                    обработаных вызовов в БД, предлагаю написать сервис для удобного их просмотра
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-third1" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-third-tab1">
+                                    <ol>
+                                        <li>Авторизация</li>
+                                        <li>Авторизация с телефона</li>
+                                        <li>Просмотр звонков за период</li>
+                                        <li>Просмотр звонков с фильтрами по номерам/длительности/статусу</li>
+                                        <li>Отдельный фильтр по направлениям (внутренние,
+                                            город/межгород/сотовые/международные)
+                                        </li>
+                                        <li>Предоставление данных в виде диаграмм и графиков, подсчет средней
+                                            статистики,
+                                            анализ данных
+                                        </li>
+                                        <li>Вывод данных в виде отчетного документа</li>
+                                        <li>Примерная стоимость звонков</li>
+                                        <li>Вывод баланса из сторонних источников(баланса у провайдера например)</li>
+                                        <li>Возможность коментировать вызовы, и направления/номера(сопоставление с
+                                            телефонной книжкой)
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-fourth1" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-fourth-tab1">php, mysql, html/css, js и его фрэймворки
+                                    по
+                                    построению различных таблиц и диаграмм
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-idea-fifth1" role="tabpanel"
+                                     aria-labelledby="v-pills-idea-fifth-tab1">
+                                    http://prog-it.github.io/Asterisk-CDR-Viewer-Mod/
+                                    http://www.asternic.net/demo/index.php?user=demo&password=demo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer></footer>
