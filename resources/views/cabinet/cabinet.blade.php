@@ -76,10 +76,6 @@
                                         <input type="email" name="email" class="form-control" id="inputEmail" value="{{$email}}">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputBio">О себе</label>
-                                    <textarea class="form-control" id="inputBio" rows="2"></textarea>
-                                </div>
                                 <button class="btn btn-success" type="submit">Сохранить</button>
                             {!! Form::close() !!}
                         </div>
