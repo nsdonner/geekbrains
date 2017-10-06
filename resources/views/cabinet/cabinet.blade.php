@@ -28,6 +28,9 @@
                             <a class="nav-link" data-toggle="tab" href="#invites-tab" role="tab">Приглашения <span class="badge badge-primary badge-pill">1</span></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#project-tab" role="tab">Создать проект</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#settings-tab" role="tab">Настройки</a>
                         </li>
                     @endif
@@ -53,17 +56,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="invites-tab" role="tabpanel">
-                        <div class="invite">
-                            <div class="project-name"><a href="#">Планы на вечер #4</a></div>
-                            <div class="project-author">Пинки</div>
-                            <div class="invite-btn-group">
-                                <button class="btn btn-outline-success">Учавствую!</button>
-                                <button class="btn btn-outline-danger">Отказаться</button>
+                    @if($settings == 1)
+                        <div class="tab-pane" id="invites-tab" role="tabpanel">
+                            <div class="invite">
+                                <div class="project-name"><a href="#">Планы на вечер #4</a></div>
+                                <div class="project-author">Пинки</div>
+                                <div class="invite-btn-group">
+                                    <button class="btn btn-outline-success">Учавствую!</button>
+                                    <button class="btn btn-outline-danger">Отказаться</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @if($settings == 1)
+
+                        <div class="tab-pane" id="project-tab" role="tabpanel">
+                            {!!  Form::open(['url' => '/id'.Auth::id() ,'method' =>'post' ]) !!}
+                            <div class="form row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputUserName" class="col-form-label">Имя проекта</label>
+                                    <input type="text" name="ProjectName" class="form-control" id="inputUserName">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail" class="col-form-label">Описание проекта</label>
+                                    <input type="email" name="ProjectLabel" class="form-control" id="inputEmail" placeholder="Может остаться пустым">
+                                </div>
+                            </div>
+                            <button class="btn btn-success" type="submit">Создать</button>
+                            {!! Form::close() !!}
+                        </div>
                         <div class="tab-pane" id="settings-tab" role="tabpanel">
                             {!!  Form::open(['url' => '/id'.Auth::id() ,'method' =>'post' ]) !!}
                                 <div class="form row">
