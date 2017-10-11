@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Validator;
-class CabinetController extends Controller
+class TaskController extends Controller
 {
     public function index(Request $request,$arguments) {
 

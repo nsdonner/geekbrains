@@ -11,17 +11,18 @@
 
         <ul class="nav nav-tabs" id="userTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#projects-tab" role="tab">Содержание</a>
+                <a class="nav-link active" data-toggle="tab" href="#part_general" role="tab">Содержание</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#invites-tab" role="tab">Участники <span class="badge badge-primary badge-pill">7</span></a>
+                <a class="nav-link" data-toggle="tab" href="#part_participants" role="tab">Участники <span class="badge badge-primary badge-pill">7</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#settings-tab" role="tab">Результат</a>
+                <a class="nav-link" data-toggle="tab" href="#part_result" role="tab">Результат</a>
             </li>
         </ul>
 
-        <div id="part_general" class="active">
+        <div class="tab-content">
+        <div id="part_general" class="tab-pane active" role="tabpanel">
             <div class="head-top">
                 <div class="head-left">
                     <div class="area-name">
@@ -213,7 +214,7 @@
             </div>
         </div>
 
-        <div id="part_participants">
+        <div id="part_participants" class="tab-pane" role="tabpanel">
             <h3 class="subtitle">Участники</h3>
             <div class="process_table">
                 <div class="font_Title">
@@ -270,10 +271,11 @@
             </div>
         </div>
 
-        <div id="part_result">
+        <div id="part_result" class="tab-pane" role="tabpanel">
             <h3 class="subtitle">Результат</h3>
 
             <textarea name="task_result" class="form-control-full" id="inputResult">Здесь заключение по задаче</textarea>
+        </div>
         </div>
     </main>
 @stop
