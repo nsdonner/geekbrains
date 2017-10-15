@@ -9,6 +9,7 @@ use Validator;
 use App\Task;
 use App\Status;
 use App\Type;
+use App\Idea;
 class TaskController extends Controller
 {
     public function index(Request $request,$arguments) {
@@ -21,14 +22,7 @@ class TaskController extends Controller
         $objTask = new Task();
         $info = $objTask->getTask($arguments);
 
-        $author = "";
-        if ($info['user_lastname'] == null || $info['user_firstname'] == null || $info['user_middlename'] == null ||
-            $info['user_lastname'] == "" || $info['user_firstname'] == "" || $info['user_middlename'] == "") {
-            $author = $info['user_name'];
-        }
-        else {
-            $author = $info['user_lastname']." ".substr($info['user_firstname'], 1,1).".".substr($info['user_middlename'],1,1).".";
-        }
+        $author = TaskController::getAuthor($info['user_lastname'], $info['user_firstname'], $info['user_middlename'], $info['user_name']);
 
         $objStatuses = new Status();
         $statuses = $objStatuses->getStatusesForTask();
@@ -36,12 +30,31 @@ class TaskController extends Controller
         $objTypes = new Type();
         $types = $objTypes->getTypes();
 
-        $data = ['info' => $info, 'statuses' => $statuses, 'author' => $author, 'types' => $types];
+        $objIdeas = new Idea();
+        $ideas = $objIdeas->getIdeasByTask($arguments);
+        foreach ($ideas as $key => $v) {
+            $mIdeas[$key]['id'] = $v['id'];
+            $mIdeas[$key]['name'] = $v['name'];
+            $mIdeas[$key]['description'] = $v['description'];
+            $mIdeas[$key]['date_create'] = $v['date_create'];
+            $mIdeas[$key]['author'] = TaskController::getAuthor($v['user_lastname'], $v['user_firstname'], $v['user_middlename'], $v['user_name']);
+        }
 
-        //var_dump($data['info']['name']);
-        //echo "<br>";
+        $data = ['info' => $info, 'statuses' => $statuses, 'author' => $author, 'types' => $types, 'ideas' => $mIdeas];
 
         return view('task.task',$data);
+    }
+
+    protected function getAuthor($user_lastname, $user_firstname, $user_middlename, $user_name) {
+        if (!(isset($user_lastname)) || !(isset($user_firstname)) || !(isset($user_middlename)) ||
+            $user_lastname == "" || $user_firstname == "" || $user_middlename == "") {
+            $author = $user_name;
+        }
+        else {
+            $author = $user_lastname." ".mb_substr($user_firstname, 0,1, "UTF-8").".".mb_substr($user_middlename,0,1, "UTF-8").".";
+        }
+
+        return $author;
     }
 
 }
