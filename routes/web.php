@@ -47,10 +47,10 @@ Route::group(['middleware'=>'auth'],function(){
         $controller = $app->make('\App\Http\Controllers\CabinetController');
         return $controller->callAction($method, $arguments);
    }]);
-    Route::match(['get','post','delete'],'/project/{name?}/{method?}',['as' => 'project', function($name="",$method='index',array $arguments = []){
+    Route::match(['get','post','delete'],'/project/{id?}/{method?}',['as' => 'project', function($id="",$method='index',array $arguments = []){
         $app = app();
         $arguments['request']= request();
-        $arguments['name'] = $name;
+        $arguments['id'] = $id;
         $controller = $app->make('\App\Http\Controllers\ProjectController');
         return $controller->callAction($method, $arguments);
     }]);

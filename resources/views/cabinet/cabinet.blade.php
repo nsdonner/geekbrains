@@ -46,9 +46,9 @@
                             <div id="current-projects">
                                 <h4> Текущие проекты:</h4>
                                 @if($project != 0)
-                                    @foreach($project as $v)
+                                    @foreach($project as $key=>$v)
                                         <div class="projects-tab">
-                                            <div class="project-name"><a href="#">{{$v['ProjectName']}}</a></div>
+                                            <div class="project-name"><a href="/project/{{$key}}">{{$v['ProjectName']}}</a></div>
                                             <div class="progect-description">{{$v['ProjectDesc']}}</div>
                                         </div>
                                     @endforeach
