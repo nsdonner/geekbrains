@@ -56,7 +56,7 @@
                     </div>
                     <div class="area-author">
                         <div class="txt-status">Авторство:</div>
-                        <div class="txt-value">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $info['date_create'])->format('Y-m-d')}} ({{ $author }}, {{ $info['user_email'] }})</div>
+                        <div class="txt-value">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $info['date_create'])}} ({{ $author }}, {{ $info['user_email'] }})</div>
                     </div>
                 </div>
             </div>
@@ -96,48 +96,30 @@
                     <div class="pr_delete"></div>
                 </div>
                 <div class="line_separate"></div>
-                <div class="process_row">
-                    <input type="hidden" name="idea_id" value=1 class="idea_id">
-                    <div class="pr_number">
-                        <div class="idea_number_value"> 1 </div>
+                @foreach($ideas as $key=>$v)
+                    <div class="process_row">
+                        <input type="hidden" name="idea_id" value={{ $v['id'] }} class="idea_id">
+                        <div class="pr_number">
+                            <div class="idea_number_value"> {{ $loop->index + 1 }}. </div>
+                        </div>
+                        <a href="/idea{{ $v['id'] }}" class="area_href"><div class="pr_idea area_href">
+                                <div class="idea_number_value"> {{ $v['name'] }} </div>
+                                <i class="fa fa-id-card-o idea_open"></i>
+                            </div></a>
+                        <div class="pr_author">
+                            <div class="idea_number_value">{{ $v['author'] }}</div>
+                        </div>
+                        <div class="pr_date">
+                            <div class="idea_number_value"> {{ $v['date_create'] }} </div>
+                        </div>
+                        <div class="pr_delete">
+                            <i class="fa fa-times-circle idea_delete"></i>
+                        </div>
                     </div>
-                    <a href="/" class="area_href"><div class="pr_idea area_href">
-                            <div class="idea_number_value"> Моя идея </div>
-                            <i class="fa fa-id-card-o idea_open"></i>
-                        </div></a>
-                    <div class="pr_author">
-                        <div class="idea_number_value">Черняков С.И.</div>
-                    </div>
-                    <div class="pr_date">
-                        <div class="idea_number_value"> 01.10.2017 16:41:00 </div>
-                    </div>
-                    <div class="pr_delete">
-                        <i class="fa fa-times-circle idea_delete"></i>
-                    </div>
-                </div>
 
-                <div class="line_separate"></div>
-                <div class="process_row">
-                    <input type="hidden" name="idea_id" value=2 class="idea_id">
-                    <div class="pr_number">
-                        <div class="idea_number_value"> 2 </div>
-                    </div>
-                    <a href="/" class="area_href"><div class="pr_idea area_href">
-                            <div class="idea_number_value"> Еще одна идея </div>
-                            <i class="fa fa-id-card-o idea_open"></i>
-                        </div></a>
-                    <div class="pr_author">
-                        <div class="idea_number_value">Иванов И.И.</div>
-                    </div>
-                    <div class="pr_date">
-                        <div class="idea_number_value"> 01.10.2017 16:58:00 </div>
-                    </div>
-                    <div class="pr_delete">
-                        <i class="fa fa-times-circle idea_delete"></i>
-                    </div>
-                </div>
+                    <div class="line_separate"></div>
+                @endforeach
 
-                <div class="line_separate"></div>
                 <div id="idea_add" class="pr_add">
                     <i class="fa fa-plus-square idea_add"></i>
                 </div>
