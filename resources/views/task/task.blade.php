@@ -27,7 +27,7 @@
                 <div class="head-left">
                     <div class="area-name">
                         <div class="txt-status">Название:</div>
-                        <input type="text" name="task_name" class="form-control" id="inputTaskName" value="Задача на 1-ую неделю октября">
+                        <input type="text" name="task_name" class="form-control" id="inputTaskName" value="{{ $info['name'] }}">
                     </div>
                 </div>
                 <div class="head-right">
@@ -35,64 +35,50 @@
                         <div class="txt-status">Статус:</div>
                         <div class="btn-group from_product_user_value">
                             <div class="btn btn-default btn-width">
-                                <div class="select_text" id="select_text_status">В работе</div>
+                                <div class="select_text" id="select_text_status">{{ $info['status'] }}</div>
                             </div>
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                                 <span class="sr-only">Меню с переключением</span>
                             </button>
                             <ul class="dropdown-menu btn-width-list" role="menu" id="ctrlStatus">
-                                <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                        <div class="option_text">В работе</div>
-                                    </div></li>
-                                <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                        <div class="option_text">Выполнено</div>
-                                    </div></li>
-                                <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                        <div class="option_text">Отклонено</div>
-                                    </div></li>
-                                <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                        <div class="option_text">Приостановлено</div>
-                                    </div></li>
+                                @foreach($statuses as $key=>$v)
+                                    <li><div class="menu_item_dropdown menu_item_dropdown_color">
+                                            <div class="option_text">{{ $v['name'] }}</div>
+                                        </div></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <div class="area-dateline">
                         <div class="txt-status">Срок:</div>
-                        <input type="date" name="task_dateline" class="form-control" id="inputTaskDateline" value="">
+                        <input type="date" name="task_dateline" class="form-control" id="inputTaskDateline" value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $info['deadline'])->format('Y-m-d') }}">
                     </div>
                     <div class="area-author">
                         <div class="txt-status">Авторство:</div>
-                        <div class="txt-value">01.10.2017 (Черняков С.И., p...@mail.ru)</div>
+                        <div class="txt-value">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $info['date_create'])->format('Y-m-d')}} ({{ $author }}, {{ $info['user_email'] }})</div>
                     </div>
                 </div>
             </div>
             <div class="head-second">
                 <div class="txt-status">Описание:</div>
-                <textarea name="task_description" class="form-control-full" id="inputTaskDescription">Описание</textarea>
+                <textarea name="task_description" class="form-control-full" id="inputTaskDescription">{{ $info['description'] }}</textarea>
                 <div class="area-type">
                     <div class="txt-status">Тип задачи:</div>
                     <div class="btn-group from_product_user_value">
                         <div class="btn btn-default btn-width">
-                            <div class="select_text" id="select_text_type">Генерация идей</div>
+                            <div class="select_text" id="select_text_type">{{ $info['type'] }}</div>
                         </div>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                             <span class="sr-only">Меню с переключением</span>
                         </button>
                         <ul class="dropdown-menu btn-width-list" role="menu" id="ctrlType">
-                            <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                    <div class="option_text">Генерация идей</div>
-                                </div></li>
-                            <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                    <div class="option_text">Голосование</div>
-                                </div></li>
-                            <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                    <div class="option_text">Ознакомление</div>
-                                </div></li>
-                            <li><div class="menu_item_dropdown menu_item_dropdown_color">
-                                    <div class="option_text">Согласование</div>
-                                </div></li>
+                            @foreach($types as $key=>$v)
+                                <li><div class="menu_item_dropdown menu_item_dropdown_color">
+                                        <div class="option_text">{{ $v['name'] }}</div>
+                                    </div></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
