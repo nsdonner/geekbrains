@@ -19,7 +19,9 @@ class Idea extends Model
             ->select('ideas.id', 'ideas.name as name', 'ideas.description', 'users.lastname as user_lastname',
                 'users.firstname as user_firstname', 'users.middlename as user_middlename', 'users.email as user_email',
                 'users.name as user_name', 'ideas.date_create as date_create')
-            ->where('id_task','=', $id)->get()->toArray();
+            ->where('id_task','=', $id)
+            ->where('is_deleted','=', 0)
+            ->get()->toArray();
 
         //var_dump($task[0]);
         //echo "<br>";
