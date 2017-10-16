@@ -131,12 +131,12 @@
             <div class="process_table">
                 <div class="current_comment">
                     <div class="comment_avatar">
-                        <img src="../project/img/avatar.jpg" class="avatar_pic">
+                        <img src="{{ $currentUser['photo'] }}" class="avatar_pic">
                     </div>
                     <div class="comment_content">
-                        <div class="comment_author">Черняков Станислав:</div>
+                        <div class="comment_author">{{ $currentUser['info'] }}:</div>
                         <div class="comment__message">
-                            <textarea name="comment_new" class="comment_text" id="inputComment_new">Мой комментарий</textarea>
+                            <textarea name="comment_new" class="comment_text" id="inputComment_new"></textarea>
                         </div>
                         <div id="msg_add" class="comment_add">
                             <i class="fa fa-plus-square msg_add"></i>
@@ -144,41 +144,26 @@
                     </div>
                 </div>
                 <div class="line_separate"></div>
+                @foreach($comments as $key=>$v)
                 <div class="comment_row">
-                    <input type="hidden" name="comment_id" value=1 class="comment_id">
+                    <input type="hidden" name="comment_id" value={{ $v['id'] }} class="comment_id">
                     <div class="comment_avatar">
-                        <img src="../project/img/avatar.jpg" class="avatar_pic">
+                        <img src="{{ $v['user']['photo'] }}" class="avatar_pic">
                     </div>
                     <div class="comment_content">
                         <div class="comment__message">
-                            <div class="comment_author">[08.10.2017 17:45:00] Черняков Станислав:</div>
+                            <div class="comment_author">[{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $v['date'])}}] {{ $v['user']['info'] }}:</div>
                             <div class="comment_delete">
                                 <i class="fa fa-times-circle msg_delete"></i>
                             </div>
                         </div>
                         <div class="comment__message">
-                            <div class="comment_text">Мой комментарий</div>
+                            <div class="comment_text">{{ $v['text'] }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="line_separate"></div>
-                <div class="comment_row">
-                    <input type="hidden" name="comment_id" value=2 class="comment_id">
-                    <div class="comment_avatar">
-                        <img src="../project/img/avatar.jpg" class="avatar_pic">
-                    </div>
-                    <div class="comment_content">
-                        <div class="comment__message">
-                            <div class="comment_author">[08.10.2017 17:00:00] Черняков Станислав:</div>
-                            <div class="comment_delete">
-                                <i class="fa fa-times-circle msg_delete"></i>
-                            </div>
-                        </div>
-                        <div class="comment__message">
-                            <div class="comment_text">Мой комментарий первый Мой комментарий первый Мой комментарий первый Мой комментарий первый Мой комментарий первый Мой комментарий первый Мой комментарий первый Мой комментарий первый Мой комментарий первый </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 

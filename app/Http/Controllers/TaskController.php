@@ -10,6 +10,7 @@ use App\Task;
 use App\Status;
 use App\Type;
 use App\Idea;
+use App\Comment;
 class TaskController extends Controller
 {
     public function index(Request $request,$arguments) {
@@ -19,10 +20,13 @@ class TaskController extends Controller
         //var_dump($arguments);
         //echo "<br>";
 
+        $objUser = new User();
+        $current_user = $objUser->getCurrentUser();
+
         $objTask = new Task();
         $info = $objTask->getTask($arguments);
 
-        $author = TaskController::getAuthor($info['user_lastname'], $info['user_firstname'], $info['user_middlename'], $info['user_name']);
+        $author = $objUser->getUserInfo($info['user_lastname'], $info['user_firstname'], $info['user_middlename'], $info['user_name']);
 
         $objStatuses = new Status();
         $statuses = $objStatuses->getStatusesForTask();
@@ -32,29 +36,34 @@ class TaskController extends Controller
 
         $objIdeas = new Idea();
         $ideas = $objIdeas->getIdeasByTask($arguments);
+        $mIdeas = [];
         foreach ($ideas as $key => $v) {
             $mIdeas[$key]['id'] = $v['id'];
             $mIdeas[$key]['name'] = $v['name'];
             $mIdeas[$key]['description'] = $v['description'];
             $mIdeas[$key]['date_create'] = $v['date_create'];
-            $mIdeas[$key]['author'] = TaskController::getAuthor($v['user_lastname'], $v['user_firstname'], $v['user_middlename'], $v['user_name']);
+            $mIdeas[$key]['author'] = $objUser->getUserInfo($v['user_lastname'], $v['user_firstname'], $v['user_middlename'], $v['user_name']);
         }
 
-        $data = ['info' => $info, 'statuses' => $statuses, 'author' => $author, 'types' => $types, 'ideas' => $mIdeas];
+        $objComments = new Comment();
+        $comments = $objComments->getCommentsByTask($arguments);
+        $mComments = [];
+        foreach ($comments as $key => $v) {
+            $mComments[$key]['id'] = $v['id'];
+            $mComments[$key]['text'] = $v['text'];
+            $mComments[$key]['date'] = $v['date'];
+            $mComments[$key]['user'] = $objUser->getUserById($v['id_user']);
+        }
+
+        $data = ['info' => $info,
+            'statuses' => $statuses,
+            'author' => $author,
+            'types' => $types,
+            'ideas' => $mIdeas,
+            'currentUser' => $current_user,
+            'comments' => $mComments];
 
         return view('task.task',$data);
-    }
-
-    protected function getAuthor($user_lastname, $user_firstname, $user_middlename, $user_name) {
-        if (!(isset($user_lastname)) || !(isset($user_firstname)) || !(isset($user_middlename)) ||
-            $user_lastname == "" || $user_firstname == "" || $user_middlename == "") {
-            $author = $user_name;
-        }
-        else {
-            $author = $user_lastname." ".mb_substr($user_firstname, 0,1, "UTF-8").".".mb_substr($user_middlename,0,1, "UTF-8").".";
-        }
-
-        return $author;
     }
 
 }

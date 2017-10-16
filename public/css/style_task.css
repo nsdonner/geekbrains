@@ -336,11 +336,11 @@ header .navbar .navbar-brand img {
 
 .comment_content {
     margin-left: 65px;
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
 }
 
 .comment_author {
-    margin-top: 15px;
+   /* margin-top: 15px;*/
     text-align: left;
     font-size: 20px;
     width: 900px;
