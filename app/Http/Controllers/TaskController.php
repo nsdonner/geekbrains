@@ -83,6 +83,7 @@ class TaskController extends Controller
         }
 
         $general['isNew'] = $isNew;
+        $js = '/js/task.js';
 
         $author = $objUser->getUserInfo($info['user_lastname'], $info['user_firstname'], $info['user_middlename'], $info['user_name']);
 
@@ -95,9 +96,14 @@ class TaskController extends Controller
             'comments' => $mComments,
             'participants' => $participants,
             'number_participants' => count($participants),
-            'general' => $general];
+            'general' => $general,
+            'js' => $js];
 
         return view('task.task',$data);
+    }
+
+    public function add() {
+        return redirect('/id'.Auth::id())->with('status', 'Задача создана!');
     }
 
 }

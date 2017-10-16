@@ -8,11 +8,19 @@
 
     <main class="container">
         @if($general['isNew'] == false)
-            <h1 class="title">Задача</h1>
+            <div class="floatleft"><h1 class="title">Задача</h1></div>
         @else
-            <h1 class="title">Новая задача</h1>
+            <div class="floatleft"><h1 class="title">Новая задача</h1></div>
         @endif
+        <div class="btn btn-outline-primary" id="btnWrite">
+            @if($general['isNew'] == false)
+                Записать
+            @else
+                Создать
+            @endif
+        </div>
 
+            <div class="clearfix"></div>
         <ul class="nav nav-tabs" id="userTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#part_general" role="tab">Содержание</a>
@@ -54,7 +62,7 @@
                             </button>
                             <ul class="dropdown-menu btn-width-list" role="menu" id="ctrlStatus">
                                 @foreach($statuses as $key=>$v)
-                                    <li><div class="menu_item_dropdown menu_item_dropdown_color">
+                                    <li><div class="menu_item_dropdown menu_item_dropdown_status">
                                             <div class="option_text">{{ $v['name'] }}</div>
                                         </div></li>
                                 @endforeach
@@ -88,7 +96,7 @@
                         </button>
                         <ul class="dropdown-menu btn-width-list" role="menu" id="ctrlType">
                             @foreach($types as $key=>$v)
-                                <li><div class="menu_item_dropdown menu_item_dropdown_color">
+                                <li><div class="menu_item_dropdown menu_item_dropdown_type">
                                         <div class="option_text">{{ $v['name'] }}</div>
                                     </div></li>
                             @endforeach

@@ -439,3 +439,12 @@ header .navbar .navbar-brand img {
     width: 200px;
     float: left;
 }
+
+.floatleft {
+    float: left;
+    width: 90%;
+}
+
+.clearfix {
+    clear: both;
+}
