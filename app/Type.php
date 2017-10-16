@@ -23,4 +23,10 @@ class Type extends Model
 
         return $types[0];
     }
+
+    public function getTypeByName($name) {
+        $types = Type::where('name','=', $name)->get()->toArray();
+
+        return $types[0];
+    }
 }

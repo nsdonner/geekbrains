@@ -23,4 +23,11 @@ class Status extends Model
 
         return $statuses[0];
     }
+
+    public function getStatusForTaskByName($name) {
+        $statuses = Status::where('type','=', 2)
+            ->where('name','=', $name)->get()->toArray();
+
+        return $statuses[0];
+    }
 }

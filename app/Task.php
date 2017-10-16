@@ -11,6 +11,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Status;
 use App\Type;
+use App\User;
 use Carbon\Carbon;
 
 class Task extends Model
@@ -53,5 +54,49 @@ class Task extends Model
         $task[0]['type'] = $objType->getDefaultType()['name'];
 
         return $task[0];
+    }
+
+    public function addTask($name, $description, $status, $deadline, $type, $id_project) {
+        $objStatuses = new Status();
+        $o_status = $objStatuses->getStatusForTaskByName($status);
+
+        $objUser = new User();
+        $current_user = $objUser->getCurrentUser();
+
+        $objTypes = new Type();
+        $o_type = $objTypes->getTypeByName($type);
+
+        $objTask = new Task();
+        $newId = $objTask->insertGetId([
+            'name' => $name,
+            'description'=> $description,
+            'id_status' => $o_status['id'],
+            'deadline' => $deadline,
+            'id_author' => $current_user['id'],
+            'id_type' => $o_type['id'],
+            'id_project' => $id_project]);
+
+        return $newId;
+    }
+
+    public function editTask($id, $name, $description, $status, $deadline, $type, $result) {
+        $objStatuses = new Status();
+        $o_status = $objStatuses->getStatusForTaskByName($status);
+
+        $objTypes = new Type();
+        $o_type = $objTypes->getTypeByName($type);
+
+        $objTask = new Task();
+        $objTask->where('id', $id)
+            ->update([
+            'name' => $name,
+            'description'=> $description,
+            'id_status' => $o_status['id'],
+            'deadline' => $deadline,
+            'id_type' => $o_type['id'],
+                'result' => $result
+            ]);
+
+        return true;
     }
 }

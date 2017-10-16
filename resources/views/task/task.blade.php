@@ -7,6 +7,23 @@
 @section('content')
 
     <main class="container">
+        <input type="hidden" id="id_task" name="id_task" value={{ $general['id_task'] }}>
+
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @if($general['isNew'] == false)
             <div class="floatleft"><h1 class="title">Задача</h1></div>
         @else
@@ -41,6 +58,7 @@
                 <div class="head-left">
                     <div class="area-project">
                         <a href="/project/{{ $info['id_project'] }}" class="area_href"><div><div class="txt-status">Проект:</div>
+                                <input type="hidden" id="id_project" name="id_project" value={{ $info['id_project'] }}>
                                <div class="idea_number_value_top"> {{ $info['project'] }} </div>
                             </div></a>
                     </div>

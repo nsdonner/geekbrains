@@ -12,6 +12,7 @@ use App\Type;
 use App\Idea;
 use App\Project;
 use App\Comment;
+use Carbon\Carbon;
 class TaskController extends Controller
 {
     public function index(Request $request,$arguments) {
@@ -83,6 +84,7 @@ class TaskController extends Controller
         }
 
         $general['isNew'] = $isNew;
+        $general['id_task'] = $arguments;
         $js = '/js/task.js';
 
         $author = $objUser->getUserInfo($info['user_lastname'], $info['user_firstname'], $info['user_middlename'], $info['user_name']);
@@ -103,7 +105,39 @@ class TaskController extends Controller
     }
 
     public function add() {
-        return redirect('/id'.Auth::id())->with('status', 'Задача создана!');
+        //ЧЕРЕЗ POST У МЕНЯ НЕ РАБОТАЕТ. Не могу понять почему. Возвращает ошибку сервера 500 (Internal Server Error)
+        //Похоже, что как-то неправильно настроен веб-сервер или файл .htaccess
+
+        /*var_dump($_POST['id']);
+        if (isset($_POST['id']) && $_POST['id'] == 0) {
+
+            $objTask = new Task();
+            $newId = $objTask->addTask($_POST['name'], $_POST['description'], $_POST['status'], $_POST['deadline'], $_POST['type'], $_POST['id_project']);
+
+            return $newId;
+        }
+        echo $_POST['id'];
+        return 0;*/
+
+        if (isset($_GET['id']) && $_GET['id'] == 0) {
+
+            $objTask = new Task();
+            $newId = $objTask->addTask($_GET['name'], $_GET['description'], $_GET['status'], $_GET['deadline'], $_GET['type'], $_GET['id_project']);
+
+            return redirect('/task'.$newId)->with('status', 'Задача создана!');
+        }
+        elseif (isset($_GET['id']) && $_GET['id'] > 0) {
+            $objTask = new Task();
+            $success = $objTask->editTask($_GET['id'], $_GET['name'], $_GET['description'], $_GET['status'], $_GET['deadline'], $_GET['type'], $_GET['result']);
+
+            if ($success == true)
+                return redirect('/task'.$_GET['id'])->with('status', 'Данные обновлены!');
+            else
+                return redirect('/task'.$_GET['id'])->withErrors('Ошибка записи данных!');
+        }
+        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+
+        //return redirect('/id'.Auth::id())->with('status', 'Задача создана!');
     }
 
 }
