@@ -15,9 +15,12 @@ class Status extends Model
     public function getStatusesForTask() {
         $statuses = Status::where('type','=', 2)->get()->toArray();
 
-        //var_dump($statuses);
-        //echo "<br>";
-
         return $statuses;
+    }
+
+    public function getDefaultStatusForTask() {
+        $statuses = Status::where('id','=', 1)->get()->toArray();
+
+        return $statuses[0];
     }
 }

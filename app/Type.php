@@ -15,9 +15,12 @@ class Type extends Model
     public function getTypes() {
         $types = Type::select()->get()->toArray();
 
-        //var_dump($statuses);
-        //echo "<br>";
-
         return $types;
+    }
+
+    public function getDefaultType() {
+        $types = Type::where('id','=', 1)->get()->toArray();
+
+        return $types[0];
     }
 }

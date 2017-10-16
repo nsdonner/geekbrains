@@ -7,24 +7,35 @@
 @section('content')
 
     <main class="container">
-        <h1 class="title">Задача</h1>
+        @if($general['isNew'] == false)
+            <h1 class="title">Задача</h1>
+        @else
+            <h1 class="title">Новая задача</h1>
+        @endif
 
         <ul class="nav nav-tabs" id="userTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#part_general" role="tab">Содержание</a>
             </li>
+            @if($general['isNew'] == false)
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#part_participants" role="tab">Участники <span class="badge badge-primary badge-pill">{{ $number_participants }}</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#part_result" role="tab">Результат</a>
             </li>
+            @endif
         </ul>
 
         <div class="tab-content">
         <div id="part_general" class="tab-pane active" role="tabpanel">
             <div class="head-top">
                 <div class="head-left">
+                    <div class="area-project">
+                        <a href="/project/{{ $info['id_project'] }}" class="area_href"><div><div class="txt-status">Проект:</div>
+                               <div class="idea_number_value_top"> {{ $info['project'] }} </div>
+                            </div></a>
+                    </div>
                     <div class="area-name">
                         <div class="txt-status">Название:</div>
                         <input type="text" name="task_name" class="form-control" id="inputTaskName" value="{{ $info['name'] }}">
@@ -54,10 +65,12 @@
                         <div class="txt-status">Срок:</div>
                         <input type="date" name="task_dateline" class="form-control" id="inputTaskDateline" value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $info['deadline'])->format('Y-m-d') }}">
                     </div>
+                    @if($general['isNew'] == false)
                     <div class="area-author">
                         <div class="txt-status">Авторство:</div>
                         <div class="txt-value">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $info['date_create'])}} ({{ $author }}, {{ $info['user_email'] }})</div>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="head-second">
@@ -84,6 +97,7 @@
                 </div>
             </div>
 
+            @if($general['isNew'] == false)
             <div class="line_separate_main"></div>
 
             <h3 class="subtitle">Решение</h3>
@@ -166,8 +180,10 @@
                 <div class="line_separate"></div>
                 @endforeach
             </div>
+            @endif
         </div>
 
+            @if($general['isNew'] == false)
         <div id="part_participants" class="tab-pane" role="tabpanel">
             <h3 class="subtitle">Участники</h3>
             <div class="process_table">
@@ -217,6 +233,7 @@
 
             <textarea name="task_result" class="form-control-full" id="inputResult">{{ $info['result'] }}</textarea>
         </div>
+            @endif
         </div>
     </main>
 @stop

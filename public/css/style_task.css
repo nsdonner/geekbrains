@@ -136,6 +136,7 @@ header .navbar .navbar-brand img {
     width: 100px;
     height: 35px;
     float: left;
+    color: black;
 }
 
 .txt-value {
@@ -204,6 +205,7 @@ header .navbar .navbar-brand img {
 
 .area_href {
     height: 55px;
+    text-decoration: none;
 }
 .area_href:hover {
     background-color: #e1e1e1;
@@ -278,6 +280,13 @@ header .navbar .navbar-brand img {
     color: #656565;
     font-size: 13px;
     line-height: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.idea_number_value_top {
+    margin-left: 5px;
+    color: #656565;
     text-align: left;
     width: 100%;
 }
