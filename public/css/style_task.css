@@ -233,6 +233,11 @@ header .navbar .navbar-brand img {
     float: left;
 }
 
+.pr_user {
+    width: 300px;
+    float: left;
+}
+
 .pr_author {
     width: 300px;
     float: left;
@@ -263,6 +268,18 @@ header .navbar .navbar-brand img {
     font-size: 13px;
     line-height: 20px;
     text-align: left;
+    width: 70px;
+}
+
+.idea_number_value_main {
+    margin-top: 15px;
+    margin-left: 5px;
+    float: left;
+    color: #656565;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: left;
+    width: 100%;
 }
 
 .idea_delete {

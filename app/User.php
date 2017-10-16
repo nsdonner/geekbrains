@@ -58,6 +58,25 @@ class User extends Authenticatable
         return $User;
     }
 
+    public function getUsersByTask(int $id_task) {
+        $Users = User::rightJoin('task_users', 'task_users.id_user', '=', 'users.id')
+            ->select('users.id as id_user', 'task_users.total_voices as total_voices', 'task_users.is_kurator as is_kurator')
+            ->where('task_users.id_task','=', $id_task)
+            ->get()->toArray();
+
+        $mUsers = [];
+        foreach ($Users as $Key => $User) {
+            $mUsers[$Key]['id_user'] = $User['id_user'];
+            $mUsers[$Key]['total_voices'] = $User['total_voices'];
+            $mUsers[$Key]['is_kurator'] = $User['is_kurator'];
+
+            $objUser = User::findOrFail($User['id_user'])->toArray();
+            $mUsers[$Key]['info'] = User::getUserInfo($objUser['lastname'], $objUser['firstname'], $objUser['middlename'], $objUser['name']);
+        }
+
+        return $mUsers;
+    }
+
     public function getUserInfo($user_lastname, $user_firstname, $user_middlename, $user_name) {
         if (!(isset($user_lastname)) || !(isset($user_firstname)) || !(isset($user_middlename)) ||
             $user_lastname == "" || $user_firstname == "" || $user_middlename == "") {

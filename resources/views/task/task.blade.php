@@ -14,7 +14,7 @@
                 <a class="nav-link active" data-toggle="tab" href="#part_general" role="tab">Содержание</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#part_participants" role="tab">Участники <span class="badge badge-primary badge-pill">7</span></a>
+                <a class="nav-link" data-toggle="tab" href="#part_participants" role="tab">Участники <span class="badge badge-primary badge-pill">{{ $number_participants }}</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#part_result" role="tab">Результат</a>
@@ -100,17 +100,18 @@
                     <div class="process_row">
                         <input type="hidden" name="idea_id" value={{ $v['id'] }} class="idea_id">
                         <div class="pr_number">
-                            <div class="idea_number_value"> {{ $loop->index + 1 }}. </div>
+                            <div class="idea_number_value_main"> {{ $loop->index + 1 }}. </div>
                         </div>
                         <a href="/idea{{ $v['id'] }}" class="area_href"><div class="pr_idea area_href">
-                                <div class="idea_number_value"> {{ $v['name'] }} </div>
-                                <i class="fa fa-id-card-o idea_open"></i>
+                                <div class="idea_number_value_main"> {{ $v['name'] }} </div>
                             </div></a>
                         <div class="pr_author">
-                            <div class="idea_number_value">{{ $v['author'] }}</div>
+                            <a href="/id{{ $v['id_user'] }}" class="area_href"><div class="pr_user area_href">
+                                <div class="idea_number_value_main">{{ $v['author'] }}</div>
+                                </div></a>
                         </div>
                         <div class="pr_date">
-                            <div class="idea_number_value"> {{ $v['date_create'] }} </div>
+                            <div class="idea_number_value_main"> {{ $v['date_create'] }} </div>
                         </div>
                         <div class="pr_delete">
                             <i class="fa fa-times-circle idea_delete"></i>
@@ -178,19 +179,24 @@
                     <div class="pr_delete"></div>
                 </div>
                 <div class="line_separate"></div>
+                @foreach($participants as $key=>$v)
                 <div class="process_row">
-                    <input type="hidden" name="participant_id" value=1 class="participant_id">
+                    <input type="hidden" name="participant_id" value={{ $v['id_user'] }} class="participant_id">
                     <div class="pr_number">
-                        <div class="idea_number_value"> 1 </div>
+                        <div class="idea_number_value"> {{ $loop->index + 1 }}. </div>
                     </div>
-                    <a href="/" class="area_href"><div class="pr_participant area_href">
-                            <div class="idea_number_value"> Черняков С.И. </div>
+                    <a href="/id{{ $v['id_user'] }}" class="area_href"><div class="pr_participant area_href">
+                            <div class="idea_number_value_main"> {{ $v['info'] }} </div>
                         </div></a>
                     <div class="pr_isCurator">
-                        <div class="idea_number_value"> + </div>
+                        <input type="checkbox" class="idea_number_value" name="isKurator" value="true"
+                                @if($v['is_kurator'] == 1)
+                                    checked
+                                @endif
+                        >
                     </div>
                     <div class="pr_weight">
-                        <div class="idea_number_value"> 5 </div>
+                        <input type="number" class="idea_number_value" size="1" name="voices" min="0" value="{{ $v['total_voices'] }}">
                     </div>
                     <div class="pr_delete">
                         <i class="fa fa-times-circle idea_delete"></i>
@@ -198,26 +204,8 @@
                 </div>
 
                 <div class="line_separate"></div>
-                <div class="process_row">
-                    <input type="hidden" name="participant_id" value=2 class="participant_id">
-                    <div class="pr_number">
-                        <div class="idea_number_value"> 2 </div>
-                    </div>
-                    <a href="/" class="area_href"><div class="pr_participant area_href">
-                            <div class="idea_number_value">Иванов И.И.</div>
-                        </div></a>
-                    <div class="pr_isCurator">
-                        <div class="idea_number_value"></div>
-                    </div>
-                    <div class="pr_weight">
-                        <div class="idea_number_value"> 1 </div>
-                    </div>
-                    <div class="pr_delete">
-                        <i class="fa fa-times-circle idea_delete"></i>
-                    </div>
-                </div>
+                @endforeach
 
-                <div class="line_separate"></div>
                 <div id="participant_add" class="pr_add">
                     <i class="fa fa-plus-square idea_add"></i>
                 </div>
@@ -227,7 +215,7 @@
         <div id="part_result" class="tab-pane" role="tabpanel">
             <h3 class="subtitle">Результат</h3>
 
-            <textarea name="task_result" class="form-control-full" id="inputResult">Здесь заключение по задаче</textarea>
+            <textarea name="task_result" class="form-control-full" id="inputResult">{{ $info['result'] }}</textarea>
         </div>
         </div>
     </main>

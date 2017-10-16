@@ -42,6 +42,7 @@ class TaskController extends Controller
             $mIdeas[$key]['name'] = $v['name'];
             $mIdeas[$key]['description'] = $v['description'];
             $mIdeas[$key]['date_create'] = $v['date_create'];
+            $mIdeas[$key]['id_user'] = $v['id_user'];
             $mIdeas[$key]['author'] = $objUser->getUserInfo($v['user_lastname'], $v['user_firstname'], $v['user_middlename'], $v['user_name']);
         }
 
@@ -55,13 +56,17 @@ class TaskController extends Controller
             $mComments[$key]['user'] = $objUser->getUserById($v['id_user']);
         }
 
+        $participants = $objUser->getUsersByTask($arguments);
+
         $data = ['info' => $info,
             'statuses' => $statuses,
             'author' => $author,
             'types' => $types,
             'ideas' => $mIdeas,
             'currentUser' => $current_user,
-            'comments' => $mComments];
+            'comments' => $mComments,
+            'participants' => $participants,
+            'number_participants' => count($participants)];
 
         return view('task.task',$data);
     }
