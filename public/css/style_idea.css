@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#tab_control {
+    margin-top: 3%;
+}
+
+.tab_content {
+    border: solid 3px #0fbdff;
+    display: none;
+    position: relative;
+    margin-top: -3px;
+}
+
+.tab_content.active {
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#tabs li {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-right: -3px;
+    text-align: center;
+    border: solid 3px #0fbdff;
+}
+
+#tabs li:not(.active) {
+    cursor: pointer;
+    background-color: #0fbdff;
+}
+
+#tabs li .active {
+    background-color: #fff;
+}
+
+.tab_content_menu li {
+    font-size: 20px;
+    list-style: decimal;
+}
+
+.tab_content_menu {
+    margin-left: 3%;
+    margin-top: 10px;
+    margin-bottom: 10px !important;
+}
+
+.go_project, .send_btn {
+    background-color: #0fbdff;
+    cursor: pointer;
+    color: #000;
+    float: left;
+}
+.go_project {
+    display: inline-block;
+    margin-top: 2px;
+}
+.go_project:hover, .send_btn:hover {
+    background-color: #1834fa;
+    color: #fff;
+}
+.vote_panel {
+    float: right;
+}
+.vote_div {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+.vote_div:hover {
+    width: 60px;
+    height: 60px;
+}
+.like {
+    background-image: url("/img/like-icon.png");
+    float: left;
+    margin-right: 20px;
+}
+.dislike {
+    background-image: url("/img/dislike-icon.png");
+    float: right;
+}
+.user_pic {
+    background-image: url("/img/user.png");
+    height: 40px;
+    width: 40px;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.comment_ta_wrapper {
+    width: 40%;
+    border: solid 2px #e1e4eb;
+    background-color: #fafbfc;
+    margin-top: 40px;
+    padding: 2%;
+}
+
+.comment_ta_label{
+    display: block;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.comment_ta_wrapper textarea {
+    min-height: 80px;
+    width: 100%;
+    padding-left: 2%;
+    padding-top: 2%;
+    border: solid 1px #d3d9de;
+}
+.send_btn {
+    display: block;
+    width: 40%;
+    float: right;
+    margin-top: 20px;
+}
+.clear{
+    clear: both;
+}
+
+.area-author {
+    margin-top: 5px;
+    float: right;
+}
+
+.txt-value {
+    width: 400px;
+    height: 35px;
+    float: left;
+}
+
+.txt-status {
+    width: 100px;
+    height: 35px;
+    float: left;
+    color: black;
+}
+
+.title {
+    margin-top: 10px;
+    width: 100%;
+    color: #656565;
+    text-align: center;
+}
+
+.subtitle {
+    margin-top: 40px;
+    margin-left: 30px;
+    float: left;
+    color: #656565;
+    text-align: left;
+}
+
+.process_table {
+    float: left;
+    margin-top: 10px;
+    width: 1050px;
+}
+
+.comment_avatar {
+    margin-top: 10px;
+    float: left;
+}
+
+.avatar_pic {
+    width: 50px;
+}
+
+.comment_content {
+    margin-left: 65px;
+    /*margin-bottom: 30px;*/
+}
+
+.comment_author {
+    /* margin-top: 15px;*/
+    text-align: left;
+    font-size: 20px;
+    width: 900px;
+    float: left;
+}
+
+.comment__message {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.comment_text {
+    text-align: left;
+    float: left;
+    padding: 10px;
+}
+.line_separate {
+    border-style: dashed;
+    border-width: 1px;
+    border-color: #eaeaea;
+    box-sizing: border-box;
+    background-color: #000000;
+    width: 1040px;
+    height: 1px;
+    margin-left: -2px;
+    float: left;
+}
+
+.comment_delete {
+    float: right;
+
+    color: #c0c0c0;
+    font-size: 16px;
+    /* Приближение из-за подстановки шрифтов */
+    /*font-weight: 400;*/
+    text-align: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.comment_delete:hover {
+    color: #2c7ec0;
+    cursor: pointer;
+}
+
+#inputComment_new {
+    width: 100%;
+}

@@ -50,3 +50,6 @@ main {
 #settings-tab form .btn {
   margin-top: 10px; }
 
+.clear{
+  clear: both;
+}

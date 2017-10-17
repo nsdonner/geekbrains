@@ -142,7 +142,7 @@
                         <div class="pr_number">
                             <div class="idea_number_value_main"> {{ $loop->index + 1 }}. </div>
                         </div>
-                        <a href="/idea{{ $v['id'] }}" class="area_href"><div class="pr_idea area_href">
+                        <a href="/note{{ $v['id'] }}" class="area_href"><div class="pr_idea area_href">
                                 <div class="idea_number_value_main"> {{ $v['name'] }} </div>
                             </div></a>
                         <div class="pr_author">

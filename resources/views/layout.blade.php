@@ -88,6 +88,7 @@
         </nav>
     </header>
         @yield('content')
+        <div class="clear"></div>
         <footer class="bg-dark">
             <p>&copy; IdeaHub, 2017. Все права защищены</p>
         </footer>

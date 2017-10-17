@@ -13,10 +13,18 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     public function getCommentsByTask(int $id_task) {
-        $statuses = Comment::where('id_task','=', $id_task)
+        $comments = Comment::where('id_task','=', $id_task)
             ->orderBy('date', 'desc')
             ->get()->toArray();
 
-        return $statuses;
+        return $comments;
+    }
+
+    public function getCommentsByIdea(int $id_idea) {
+        $comments = Comment::where('id_idea','=', $id_idea)
+            ->orderBy('date', 'desc')
+            ->get()->toArray();
+
+        return $comments;
     }
 }
