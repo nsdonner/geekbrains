@@ -32,6 +32,14 @@
         li {
             list-style-type:none;
         }
+        footer {
+            margin-top: 40px;
+            background-color: #e1e1e1;
+            padding: 20px 0 20px 10px;
+        }
+        footer p{
+            margin-bottom: 0 !important;
+        }
     </style>
 </head>
 <body class="container">
@@ -80,7 +88,9 @@
         </nav>
     </header>
         @yield('content')
-        <footer class="bg-dark"></footer>
+        <footer class="bg-dark">
+            <p>&copy; IdeaHub, 2017. Все права защищены</p>
+        </footer>
 @yield('scripts')
 </body>
 </html>
