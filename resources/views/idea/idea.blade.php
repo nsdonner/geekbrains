@@ -54,7 +54,7 @@
                 {{ $info['competitors'] }}
             </ol>
         </div>
-        <button type="button" class="btn btn-default go_project">Вернуться к задаче "{{ $info['task'] }}"</button>
+        <a href="/task{{ $info['id_task'] }}"><button type="button" class="btn btn-default go_project">Вернуться к задаче "{{ $info['task'] }}"</button></a>
 
         @if($general['isNew'] == false)
             <div class="area-author">
