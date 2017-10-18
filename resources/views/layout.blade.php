@@ -26,16 +26,25 @@
 
     <link rel="stylesheet" href="/css/style.css">
     <style>
+        html, body {
+            height: 100%;
+        }
         ol,ul {
             margin-bottom:0 !important;
         }
         li {
             list-style-type:none;
         }
+        main {
+            padding-top: 0;
+            position: relative;
+            padding-bottom: 64px;
+            min-height: 100%;
+        }
         footer {
-            margin-top: 40px;
             background-color: #e1e1e1;
             padding: 20px 0 20px 10px;
+
         }
         footer p{
             margin-bottom: 0 !important;
