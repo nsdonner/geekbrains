@@ -161,8 +161,8 @@
                     <div class="line_separate"></div>
                 @endforeach
 
-                <div id="idea_add" class="pr_add">
-                    <i class="fa fa-plus-square idea_add"></i>
+                <div class="pr_add">
+                    <i id="idea_add" class="fa fa-plus-square idea_add"></i>
                 </div>
             </div>
 

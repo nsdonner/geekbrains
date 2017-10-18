@@ -85,7 +85,7 @@
                     <div class="comment_content">
                         <div class="comment_author">{{ $currentUser['info'] }}:</div>
                         <div class="comment__message">
-                            <textarea name="comment_new" class="comment_text" id="inputComment_new"></textarea>
+                            <textarea name="comment_new" class="comment_text" id="inputCommentNew"></textarea>
                         </div>
                         <button id="msg_add" class="btn btn-default send_btn">Отправить</button>
                     </div>

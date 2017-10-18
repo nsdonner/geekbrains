@@ -67,6 +67,16 @@ $(document).ready(function () {
         return true;
     });
 
+    var $btnAddIdea = $('#idea_add');
+
+    $btnAddIdea.on('click', function () {
+        $id = $.trim($('#id_task')[0].value);
+        console.log($id);
+        $(location).attr('href', '/note0?id_task='+$id);
+
+        return true
+    });
+
     $('.menu_item_dropdown_status').on('click', selectItemStatus);
     $('.menu_item_dropdown_type').on('click', selectItemType);
     $('.menu_item_dropdown').hover(lightItem);

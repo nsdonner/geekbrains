@@ -27,4 +27,17 @@ class Comment extends Model
 
         return $comments;
     }
+
+    public function addCommentToIdea($id_idea, $text) {
+        $objUser = new User();
+        $current_user = $objUser->getCurrentUser();
+
+        $objComment = new Comment();
+        $newId = $objComment->insertGetId([
+            'text' => $text,
+            'id_user' => $current_user['id'],
+            'id_idea' => $id_idea]);
+
+        return $newId;
+    }
 }

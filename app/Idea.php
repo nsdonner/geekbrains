@@ -9,6 +9,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Carbon\Carbon;
 
 class Idea extends Model
 {
@@ -46,5 +48,53 @@ class Idea extends Model
             return $ideas[0];
         }
 
+    }
+
+    public function getNewIdea() {
+        $idea = [];
+
+        $idea[0]['id'] = 0;
+        $idea[0]['name'] = "";
+        $idea[0]['description'] = "";
+        $idea[0]['technologies'] = "";
+        $idea[0]['competitors'] = "";
+        $idea[0]['user_lastname'] = "";
+        $idea[0]['user_firstname'] = "";
+        $idea[0]['user_middlename'] = "";
+        $idea[0]['user_email'] = "";
+        $idea[0]['user_name'] = "";
+        $idea[0]['date_create'] = Carbon::now();
+
+        return $idea[0];
+    }
+
+    public function addIdea($name, $description, $technologies, $competitors, $id_task) {
+        $objUser = new User();
+        $current_user = $objUser->getCurrentUser();
+
+        $objIdea = new Idea();
+        $newId = $objIdea->insertGetId([
+            'name' => $name,
+            'description'=> $description,
+            'technologies' => $technologies,
+            'competitors' => $competitors,
+            'id_author' => $current_user['id'],
+            'id_task' => $id_task]);
+
+        return $newId;
+    }
+
+    public function editIdea($id, $name, $description, $technologies, $competitors) {
+
+        $objIdea = new Idea();
+        $objIdea->where('id', $id)
+            ->update([
+                'name' => $name,
+                'description'=> $description,
+                'technologies' => $technologies,
+                'competitors' => $competitors
+            ]);
+
+        return true;
     }
 }
