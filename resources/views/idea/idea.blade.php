@@ -30,6 +30,13 @@
         @else
             <h1 class="title">Новая идея</h1>
         @endif
+        <div class="btn btn-outline-primary" id="btnWrite">
+            @if($general['isNew'] == false)
+                Записать
+            @else
+                Создать
+            @endif
+        </div>
 
         <ul id="tabs">
             <li class="active">Название идеи</li>
@@ -38,21 +45,27 @@
             <li>Конкуренты</li>
         </ul>
 
-        <div class="tab_content active"><h1>{{ $info['name'] }}</h1></div>
-        <div class="tab_content">
-            <ol class="tab_content_menu">
-                {{ $info['description'] }}
-            </ol>
+        <div class="tab_content active">
+            <textarea name="idea_name" class="form-control-full" id="inputIdeaName">{{ $info['name'] }}</textarea>
+            <!--<h1></h1>-->
         </div>
         <div class="tab_content">
-            <ol class="tab_content_menu">
+            <textarea name="idea_description" class="form-control-full" id="inputIdeaDescription">{{ $info['description'] }}</textarea>
+        <!--<ol class="tab_content_menu">
+
+            </ol>-->
+        </div>
+        <div class="tab_content">
+            <textarea name="idea_technologies" class="form-control-full" id="inputIdeaTechnologies">{{ $info['technologies'] }}</textarea>
+        <!--<ol class="tab_content_menu">
                 {{ $info['technologies'] }}
-            </ol>
+            </ol>-->
         </div>
         <div class="tab_content">
-            <ol class="tab_content_menu">
+            <textarea name="idea_competitors" class="form-control-full" id="inputIdeaCompetitors">{{ $info['competitors'] }}</textarea>
+        <!--<ol class="tab_content_menu">
                 {{ $info['competitors'] }}
-            </ol>
+            </ol>-->
         </div>
         <a href="/task{{ $info['id_task'] }}"><button type="button" class="btn btn-default go_project">Вернуться к задаче "{{ $info['task'] }}"</button></a>
 

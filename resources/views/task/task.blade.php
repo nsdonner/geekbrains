@@ -179,12 +179,10 @@
                         <div class="comment__message">
                             <textarea name="comment_new" class="comment_text" id="inputComment_new"></textarea>
                         </div>
-                        <div id="msg_add" class="comment_add">
-                            <i class="fa fa-plus-square msg_add"></i>
-                        </div>
+                        <button id="msg_add" class="btn btn-default send_btn">Отправить</button>
                     </div>
                 </div>
-                <div class="line_separate"></div>
+                <div class="line_separate margin15top"></div>
                 @foreach($comments as $key=>$v)
                 <div class="comment_row">
                     <input type="hidden" name="comment_id" value={{ $v['id'] }} class="comment_id">
