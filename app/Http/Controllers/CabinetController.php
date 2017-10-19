@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use Validator;
 use App\Project;
+use App\Project_User as ProjectUser;
 class CabinetController extends Controller
 {
     public function index(Request $request,$arguments) {
@@ -59,9 +60,10 @@ class CabinetController extends Controller
                    'ProjectName'=>'required|max:32|min:1',
                    'ProjectLabel'=>'max:255'
                 ]);
-                Project::insert(['name'=>$data['ProjectName'],
-                                'description'=>$data['ProjectLabel'],
-                                'id_author'=>Auth::id()]);
+                $project = new Project();
+                $project = $project->ProjectCreate($data['ProjectName'],$data['ProjectLabel'],Auth::id());
+                $ProjectUser = new ProjectUser();
+                $ProjectUser->UserAdd($project,Auth::id(),$kurator = 1,$invite = "in");
                 return redirect('/id'.Auth::id())->with('status','Проект успешно создан!');
             }
             return redirect('/id'.Auth::id())->withErrors('Проверьте данные!');
@@ -70,4 +72,5 @@ class CabinetController extends Controller
             return redirect('/id'.Auth::id());
         }
     }
+
 }

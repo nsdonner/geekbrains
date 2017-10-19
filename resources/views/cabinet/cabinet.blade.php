@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-4"><img class="img-thumbnail" src="{{ asset('/img/'.$photo)}}" alt="$user_name"></div>
             <div class="col-md-8">
-                <div class="user-name">{{$name}}</div>
+                <div class="user-name">{{$name}}@if($settings ==1)<span style="color:slategrey">#{{Auth::id()}}</span>@endif</div>
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
@@ -66,7 +66,6 @@
                                 </div>
                             </div>
                         </div>
-
                             <div class="tab-pane" id="invites-tab" role="tabpanel">
                                 <div class="invite">
                                     <div class="project-name"><a href="#">Планы на вечер #4</a></div>
