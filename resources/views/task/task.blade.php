@@ -8,6 +8,7 @@
 
     <main class="container">
         <input type="hidden" id="id_task" name="id_task" value={{ $general['id_task'] }}>
+        <input type="hidden" id="isNew" name="isNew" value={{ $general['isNew'] }}>
 
         @if (session('status'))
             <div class="alert alert-success">

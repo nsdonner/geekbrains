@@ -104,22 +104,30 @@ class TaskController extends Controller
         return view('task.task',$data);
     }
 
-    public function add() {
+    public function add(Request $request) {
         //ЧЕРЕЗ POST У МЕНЯ НЕ РАБОТАЕТ. Не могу понять почему. Возвращает ошибку сервера 500 (Internal Server Error)
         //Похоже, что как-то неправильно настроен веб-сервер или файл .htaccess
 
-        /*var_dump($_POST['id']);
+        var_dump($_POST);
         if (isset($_POST['id']) && $_POST['id'] == 0) {
 
             $objTask = new Task();
             $newId = $objTask->addTask($_POST['name'], $_POST['description'], $_POST['status'], $_POST['deadline'], $_POST['type'], $_POST['id_project']);
 
-            return $newId;
+            return redirect('/task'.$newId)->with('status', 'Задача создана!');
         }
-        echo $_POST['id'];
-        return 0;*/
+        elseif (isset($_POST['id']) && $_POST['id'] > 0) {
+            $objTask = new Task();
+            $success = $objTask->editTask($_POST['id'], $_POST['name'], $_POST['description'], $_POST['status'], $_POST['deadline'], $_POST['type'], $_POST['result']);
 
-        if (isset($_GET['id']) && $_GET['id'] == 0) {
+            if ($success == true)
+                return redirect('/task'.$_POST['id'])->with('status', 'Данные обновлены!');
+            else
+                return redirect('/task'.$_POST['id'])->withErrors('Ошибка записи данных!');
+        }
+        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+
+        /*if (isset($_GET['id']) && $_GET['id'] == 0) {
 
             $objTask = new Task();
             $newId = $objTask->addTask($_GET['name'], $_GET['description'], $_GET['status'], $_GET['deadline'], $_GET['type'], $_GET['id_project']);
@@ -135,7 +143,7 @@ class TaskController extends Controller
             else
                 return redirect('/task'.$_GET['id'])->withErrors('Ошибка записи данных!');
         }
-        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');*/
 
         //return redirect('/id'.Auth::id())->with('status', 'Задача создана!');
     }
