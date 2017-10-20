@@ -25,34 +25,54 @@ $(document).ready(function () {
 
     $btnWrite.on('click', function () {
         //console.log();
-        //if ($.trim($(this).html()) == "Создать")
+        id = $.trim($('#id_task')[0].value);
 
-        $id = $.trim($('#id_task')[0].value);
+        name = $.trim($('#inputTaskName')[0].value);
+        status = $.trim($('#select_text_status')[0].textContent);
+        deadline = $.trim($('#inputTaskDateline')[0].value);
+        description = $.trim($('#inputTaskDescription')[0].value);
+        type = $.trim($('#select_text_type')[0].textContent);
+        id_project = $.trim($('#id_project')[0].value);
 
-        $name = $.trim($('#inputTaskName')[0].value);
-        $status = $.trim($('#select_text_status')[0].textContent);
-        $deadline = $.trim($('#inputTaskDateline')[0].value);
-        $description = $.trim($('#inputTaskDescription')[0].value);
-        $type = $.trim($('#select_text_type')[0].textContent);
-        $id_project = $.trim($('#id_project')[0].value);
-        $result = $.trim($('#inputResult')[0].value);
+        isNew = $.trim($('#isNew')[0].value);
+        if (isNew == 1) {
+            data = {
+                'id': id,
+                'name': name,
+                'deadline': deadline,
+                'status': status,
+                'description': description,
+                'type': type,
+                'id_project': id_project,
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            };
+        }
+        else {
 
-        $(location).attr('href', '/task0/add?id='+$id+'&name='+$name+'&deadline='+$deadline+'&status='+$status+'&description='+$description+'&type='+$type+'&id_project='+$id_project+'&result='+$result);
-        /*$.ajax({
+            result = $.trim($('#inputResult')[0].value);
+            data = {
+                'id': id,
+                'name': name,
+                'deadline': deadline,
+                'status': status,
+                'description': description,
+                'type': type,
+                'id_project': id_project,
+                'result': result,
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            };
+        }
+
+        /*$(location).attr('href', '/task0/add?id='+$id+'&name='+$name+'&deadline='+$deadline+'&status='+$status+'&description='+$description+'&type='+$type+'&id_project='+$id_project+'&result='+$result);
+            */
+
+        $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: '/task0/add',
             type: 'POST',
-            data: {
-                'id': $id,
-                'name': $name,
-                'deadline': $deadline,
-                'status': $status,
-                'description': $description,
-                'type': $type,
-                'id_project': $id_project
-            },
+            data: data,
             contentType: false,
             processData: false,
             success:function(response) {
@@ -61,10 +81,11 @@ $(document).ready(function () {
                 }
                 else
                     console.log(response);
-            }
-        });*/
+            },
+            failure: function() {alert("Error!");}
+        });
 
-        return true;
+
     });
 
     var $btnAddIdea = $('#idea_add');
