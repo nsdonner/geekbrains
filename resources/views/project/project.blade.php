@@ -33,9 +33,9 @@
             </div>
         @endif
         <div class="jumbotron">
-            <h2 class="display-4">Курсовой проект 2ой четверти</h2>
+            <h2 class="display-4">{{$project['name']}}</h2>
             <hr class="jumbotron-hr">
-            <p class="lead">Нам необходимо выбрать идею курсового проекта</p>
+            <p class="lead">{{$project['description']}}</p>
         </div>
         <div id="project-menu">
             <ul class="nav nav-tabs" id="userTab" role="tablist">
@@ -49,7 +49,9 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="tasks-tab" role="tabpanel">
-                <button class="btn btn-success">Добавить задачу</button>
+                    @if(isset($kurator) && $kurator == 1)
+                    <a class="btn btn-success" href="/task0?id_project={{$project['id']}}">Добавить задачу</a>
+                    @endif
                     <div class="card-group">
                     <a href="#" class="card" id="brainstorming-card">
                         <div class="card-header"></div>

@@ -30,7 +30,7 @@
                         <a class="nav-link active" data-toggle="tab" href="#projects-tab" role="tab">Проекты</a>
                     </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#invites-tab" role="tab">Приглашения <span class="badge badge-primary badge-pill">1</span></a>
+                            <a class="nav-link" data-toggle="tab" href="#invites-tab" role="tab">Приглашения <span class="badge badge-primary badge-pill">@if(isset($invites)){{count($invites)}}@else 0 @endif</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#project-tab" role="tab">Создать проект</a>
@@ -67,14 +67,18 @@
                             </div>
                         </div>
                             <div class="tab-pane" id="invites-tab" role="tabpanel">
-                                <div class="invite">
-                                    <div class="project-name"><a href="#">Планы на вечер #4</a></div>
-                                    <div class="project-author">Пинки</div>
-                                    <div class="invite-btn-group">
-                                        <button class="btn btn-outline-success">Учавствую!</button>
-                                        <button class="btn btn-outline-danger">Отказаться</button>
-                                    </div>
-                                </div>
+                                @if(isset($invites))
+                                    @foreach($invites as $v)
+                                        <div class="invite">
+                                            <div class="project-name"><a href="/project/{{$v['id_project']}}">{{$v['ProjectName']}}</a></div>
+                                            <div class="project-author">{{$v['NameInviter']}}</div>
+                                            <div class="invite-btn-group">
+                                                <button class="btn btn-outline-success" onclick="EnterProject({{$v['id_project']}},'in')">Учавствую!</button>
+                                                <button class="btn btn-outline-danger" onclick="EnterProject({{$v['id_project']}},'no')">Отказаться</button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
 
                             <div class="tab-pane" id="project-tab" role="tabpanel">
@@ -112,4 +116,25 @@
             </div>
         </div>
     </main>
+@stop
+@section('scripts')
+
+    <script type="text/javascript">
+        function EnterProject(id,invite){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/id{{Auth::id()}}/projectinvite',
+                type: 'POST',
+                data: "id="+id+"&invite="+invite,
+                success:function onAjaxSuccess(result) {
+                    if (result == "yes")
+                        alert("Вы добавлены в проект");
+                    else
+                        alert("Вы отклонили приглашениe");
+                }
+            })
+        }
+    </script>
 @stop
