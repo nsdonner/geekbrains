@@ -61,7 +61,13 @@ Route::group(['middleware'=>'auth'],function(){
         $controller = $app->make('\App\Http\Controllers\TaskController');
         return $controller->callAction($method, $arguments);
     }]);
-    Route::post('task{id_task}/add', '\App\Http\Controllers\TaskController@add');
+    Route::post('task{id_task}/add', '\App\Http\Controllers\TaskController@add',['as' => 'task', function($id_task="",$method='add',array $arguments = []){
+        $app = app();
+        $arguments['request']= request();
+        $arguments['id_task'] = $id_task;
+        $controller = $app->make('\App\Http\Controllers\TaskController');
+        return $controller->callAction($method, $arguments);
+    }]);
     Route::match(['get','post','delete'],'/note{id_idea}/{method?}',['as' => 'idea', function($id_idea="",$method='index',array $arguments = []){
         $app = app();
         $arguments['request']= request();

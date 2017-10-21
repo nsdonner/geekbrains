@@ -77,37 +77,47 @@ class IdeaController extends Controller
 
     public function add() {
 
-        if (isset($_GET['id']) && $_GET['id'] == 0) {
+        if (isset($_POST['id']) && $_POST['id'] == 0) {
 
             $objIdea = new Idea();
-            $newId = $objIdea->addIdea($_GET['name'], $_GET['description'], $_GET['technologies'], $_GET['competitors'], $_GET['id_task']);
+            $newId = $objIdea->addIdea($_POST['name'], $_POST['description'], $_POST['technologies'], $_POST['competitors'], $_POST['id_task']);
 
-            return redirect('/note'.$newId)->with('status', 'Идея создана!');
+            return $newId; //edirect('/note'.$newId)->with('status', 'Идея создана!');
         }
-        elseif (isset($_GET['id']) && $_GET['id'] > 0) {
+        elseif (isset($_POST['id']) && $_POST['id'] > 0) {
             $objIdea= new Idea();
-            $success = $objIdea->editIdea($_GET['id'], $_GET['name'], $_GET['description'], $_GET['technologies'], $_GET['competitors']);
+            $success = $objIdea->editIdea($_POST['id'], $_POST['name'], $_POST['description'], $_POST['technologies'], $_POST['competitors']);
 
             if ($success == true)
-                return redirect('/note'.$_GET['id'])->with('status', 'Данные обновлены!');
+                return $_POST['id'];//redirect('/note'.$_GET['id'])->with('status', 'Данные обновлены!');
             else
-                return redirect('/note'.$_GET['id'])->withErrors('Ошибка записи данных!');
+                return null; //redirect('/note'.$_GET['id'])->withErrors('Ошибка записи данных!');
         }
-        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+        return null; //redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
 
     }
 
     public function addComment() {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            if (isset($_GET['text']) && $_GET['text'] != "") {
+        if (isset($_POST['id']) && $_POST['id'] > 0) {
+            if (isset($_POST['text']) && $_POST['text'] != "") {
                 $objComment= new Comment();
-                $newId = $objComment->addCommentToIdea($_GET['id'], $_GET['text']);
+                $newId = $objComment->addCommentToIdea($_POST['id'], $_POST['text']);
 
                 return $newId;
             }
-            return redirect('/note'.$_GET['id'])->withErrors('Необходимо ввести текст комментария!');
+            return null; //redirect('/note'.$_GET['id'])->withErrors('Необходимо ввести текст комментария!');
         }
-        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+        return null; //redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+    }
+
+    public function dropComment() {
+        if (isset($_POST['id_comment']) && $_POST['id_comment'] > 0) {
+            $objComment= new Comment();
+            $DelId = $objComment->deleteComment($_POST['id_comment']);
+
+            return $DelId;
+        }
+        return null;//redirect('/task1')->withErrors('Ошибка записи данных!');//null;
     }
 
 }
