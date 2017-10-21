@@ -69,7 +69,7 @@ class CabinetController extends Controller
                 $project = new Project();
                 $project = $project->ProjectCreate($data['ProjectName'],$data['ProjectLabel'],Auth::id());
                 $ProjectUser = new ProjectUser();
-                $ProjectUser->UserAdd($project,Auth::id(),$kurator = 1,$invite = "in");
+                $ProjectUser->UserAdd($project,Auth::id(),$invite = "in",$kurator = 1);
                 return redirect('/id'.Auth::id())->with('status','Проект успешно создан!');
             }
             return redirect('/id'.Auth::id())->withErrors('Проверьте данные!');
