@@ -15,10 +15,15 @@ class ProjectController extends Controller
     public function index(Request $request, $arguments)
     {
         $project = new Project();
-        $project = $project->getProjectById($arguments);
-        $projectUsers = new ProjectUser();
-        $members = $projectUsers->GetProjectUsers($arguments);
-        return view('project.project', compact('members', 'project'));
+        $project = $project->getProjectById($arguments,Auth::id());
+        if(!empty($project)) {
+            $projectUsers = new ProjectUser();
+            $kurator = $projectUsers->isKurator(Auth::id(),$project['id']);
+            $members = $projectUsers->GetProjectUsers($arguments);
+            return view('project.project', compact('members', 'project','kurator'));
+        }else {
+            return abort(404);
+        }
     }
 
     public function MemberInvite(Request $request, $arguments)

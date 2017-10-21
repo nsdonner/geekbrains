@@ -71,7 +71,7 @@ class TaskController extends Controller
 
             $info['id_project'] = $_GET['id_project'];
             $objProject = new Project();
-            $info['project'] = $objProject->getProjectById($info['id_project'])['name'];
+            $info['project'] = $objProject->getProjectById($info['id_project'],Auth::id())['name'];
 
             if (!(isset($info['project']))) {
                 return redirect('/id'.Auth::id())->withErrors('Попыта создать задачу в контексте несуществующего проекта!');

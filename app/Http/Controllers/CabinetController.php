@@ -41,8 +41,14 @@ class CabinetController extends Controller
             }else{
                 $project = 0;
             }
+            $invites = new ProjectUser();
+            $invites = $invites->GetInvitesUser($idcurrent);
+            if(!empty($invites))
+                $data['invites'] = $invites;
+            else
+                $data['invites'] = [];
             $photo = ($model->photo == null) ? "users/avatar.jpg" : $model->photo;
-            $data = ['name' => $name,'email'=> $email,'photo' => $photo,'project'=>$project,'settings' => 1];
+            $data += ['name' => $name,'email'=> $email,'photo' => $photo,'project'=>$project,'settings' => 1];
         }else {
             // Дать права на просмотр страницы
             $model = User::findOrFail($idcurrent);
@@ -72,5 +78,17 @@ class CabinetController extends Controller
             return redirect('/id'.Auth::id());
         }
     }
-
+    public function ProjectInvite(){
+        $id = $_REQUEST['id'];
+        $invite = $_REQUEST['invite'];
+        if($invite=="in"){
+            $model = new ProjectUser();
+            $data = $model->UpdateInviteUser($id,$invite,Auth::id());
+            return "yes";
+        }else{
+            $model = new ProjectUser();
+            $data = $model->UpdateInviteUser($id,$invite,Auth::id());
+            return "no";
+        }
+    }
 }
