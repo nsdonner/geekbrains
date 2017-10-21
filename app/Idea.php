@@ -97,4 +97,14 @@ class Idea extends Model
 
         return true;
     }
+
+    public function deleteIdea($id) {
+        $objIdea = new Idea();
+        $objIdea->where('id', $id)
+            ->update([
+                'is_deleted' => 1
+            ]);
+
+        return $id;
+    }
 }

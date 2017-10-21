@@ -173,17 +173,17 @@
             <div class="process_table">
                 <div class="current_comment">
                     <div class="comment_avatar">
-                        <img src="{{ $currentUser['photo'] }}" class="avatar_pic">
+                        <img src="{{ $currentUser['photo'] }}" class="avatar_pic" id="own_pic">
                     </div>
                     <div class="comment_content">
-                        <div class="comment_author">{{ $currentUser['info'] }}:</div>
+                        <div class="comment_author" id="own_author">{{ $currentUser['info'] }}:</div>
                         <div class="comment__message">
-                            <textarea name="comment_new" class="comment_text" id="inputComment_new"></textarea>
+                            <textarea name="comment_new" class="comment_text"  id="inputCommentNew"></textarea>
                         </div>
                         <button id="msg_add" class="btn btn-default send_btn">Отправить</button>
                     </div>
                 </div>
-                <div class="line_separate margin15top"></div>
+                <div id="first_comment_place" class="line_separate margin15top"></div>
                 @foreach($comments as $key=>$v)
                 <div class="comment_row">
                     <input type="hidden" name="comment_id" value={{ $v['id'] }} class="comment_id">

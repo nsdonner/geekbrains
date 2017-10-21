@@ -105,47 +105,57 @@ class TaskController extends Controller
     }
 
     public function add(Request $request) {
-        //ЧЕРЕЗ POST У МЕНЯ НЕ РАБОТАЕТ. Не могу понять почему. Возвращает ошибку сервера 500 (Internal Server Error)
-        //Похоже, что как-то неправильно настроен веб-сервер или файл .htaccess
 
-        var_dump($_POST);
         if (isset($_POST['id']) && $_POST['id'] == 0) {
 
             $objTask = new Task();
             $newId = $objTask->addTask($_POST['name'], $_POST['description'], $_POST['status'], $_POST['deadline'], $_POST['type'], $_POST['id_project']);
 
-            return redirect('/task'.$newId)->with('status', 'Задача создана!');
+            return $newId;//redirect('/task'.$newId)->with('status', 'Задача создана!');
         }
         elseif (isset($_POST['id']) && $_POST['id'] > 0) {
             $objTask = new Task();
             $success = $objTask->editTask($_POST['id'], $_POST['name'], $_POST['description'], $_POST['status'], $_POST['deadline'], $_POST['type'], $_POST['result']);
 
             if ($success == true)
-                return redirect('/task'.$_POST['id'])->with('status', 'Данные обновлены!');
+                return $_POST['id'];//redirect('/task'.$_POST['id'])->with('status', 'Данные обновлены!');
             else
-                return redirect('/task'.$_POST['id'])->withErrors('Ошибка записи данных!');
+                return null;//redirect('/task'.$_POST['id'])->withErrors('Ошибка записи данных!');
         }
-        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+        return null;//redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+    }
 
-        /*if (isset($_GET['id']) && $_GET['id'] == 0) {
+    public function addComment() {
+        if (isset($_POST['id']) && $_POST['id'] > 0) {
+            if (isset($_POST['text']) && $_POST['text'] != "") {
+                $objComment= new Comment();
+                $newId = $objComment->addCommentToTask($_POST['id'], $_POST['text']);
 
-            $objTask = new Task();
-            $newId = $objTask->addTask($_GET['name'], $_GET['description'], $_GET['status'], $_GET['deadline'], $_GET['type'], $_GET['id_project']);
-
-            return redirect('/task'.$newId)->with('status', 'Задача создана!');
+                return $newId;
+            }
+            return null; //redirect('/note'.$_GET['id'])->withErrors('Необходимо ввести текст комментария!');
         }
-        elseif (isset($_GET['id']) && $_GET['id'] > 0) {
-            $objTask = new Task();
-            $success = $objTask->editTask($_GET['id'], $_GET['name'], $_GET['description'], $_GET['status'], $_GET['deadline'], $_GET['type'], $_GET['result']);
+        return null; //redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');
+    }
 
-            if ($success == true)
-                return redirect('/task'.$_GET['id'])->with('status', 'Данные обновлены!');
-            else
-                return redirect('/task'.$_GET['id'])->withErrors('Ошибка записи данных!');
+    public function dropComment() {
+        if (isset($_POST['id_comment']) && $_POST['id_comment'] > 0) {
+            $objComment= new Comment();
+            $DelId = $objComment->deleteComment($_POST['id_comment']);
+
+            return $DelId;
         }
-        return redirect('/id'.Auth::id())->withErrors('Ошибка записи данных по причине отсутствия идентификационных данных!');*/
+        return null;//redirect('/task1')->withErrors('Ошибка записи данных!');//null;
+    }
 
-        //return redirect('/id'.Auth::id())->with('status', 'Задача создана!');
+    public function dropIdea() {
+        if (isset($_POST['id_idea']) && $_POST['id_idea'] > 0) {
+            $objIdea= new Idea();
+            $DelId = $objIdea->deleteIdea($_POST['id_idea']);
+
+            return $DelId;
+        }
+        return null;//redirect('/task1')->withErrors('Ошибка записи данных!');//null;
     }
 
 }

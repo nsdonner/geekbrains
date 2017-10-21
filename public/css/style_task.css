@@ -369,7 +369,7 @@ header .navbar .navbar-brand img {
    /* margin-top: 15px;*/
     text-align: left;
     font-size: 20px;
-    width: 900px;
+    width: 100%;
     float: left;
 }
 
@@ -421,7 +421,7 @@ header .navbar .navbar-brand img {
     margin-top: 50px;
 }
 
-#inputComment_new {
+#inputCommentNew {
     width: 100%;
 }
 
