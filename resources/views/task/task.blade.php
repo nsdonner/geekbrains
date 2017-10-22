@@ -45,7 +45,7 @@
             </li>
             @if($general['isNew'] == false)
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#part_participants" role="tab">Участники <span class="badge badge-primary badge-pill">{{ $number_participants }}</span></a>
+                <a class="nav-link" data-toggle="tab" href="#part_participants" role="tab">Участники <span class="badge badge-primary badge-pill" id="number_participants">{{ $number_participants }}</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#part_result" role="tab">Результат</a>
@@ -215,8 +215,8 @@
                 <div class="font_Title">
                     <div class="pr_number">№</div>
                     <div class="pr_participant">Участник</div>
+                    <div class="pr_weight">-</div>
                     <div class="pr_isCurator">Куратор</div>
-                    <div class="pr_weight">Вес голоса</div>
                     <div class="pr_delete"></div>
                 </div>
                 <div class="line_separate"></div>
@@ -226,9 +226,32 @@
                     <div class="pr_number">
                         <div class="idea_number_value"> {{ $loop->index + 1 }}. </div>
                     </div>
-                    <a href="/id{{ $v['id_user'] }}" class="area_href"><div class="pr_participant area_href">
-                            <div class="idea_number_value_main"> {{ $v['info'] }} </div>
-                        </div></a>
+                    @if(true == true)
+                        <div class="btn-group edit_participant">
+                            <div class="btn btn-default btn-width">
+                                <div class="select_text" id="select_text_type">{{ $info['type'] }}</div>
+                            </div>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Меню с переключением</span>
+                            </button>
+                            <ul class="dropdown-menu btn-width-list" role="menu" id="ctrlType">
+                                @foreach($types as $keyP=>$vP)
+                                    <li><div class="menu_item_dropdown menu_item_dropdown_type">
+                                            <div class="option_text">{{ $vP['name'] }}</div>
+                                        </div></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @else
+                        <a href="/id{{ $v['id_user'] }}" class="area_href"><div class="pr_participant area_href">
+                                <div class="idea_number_value_main"> {{ $v['info'] }} </div>
+                            </div></a>
+                    @endif
+                    <div class="pr_weight">
+                        <div class="idea_number_value"></div>
+                        <!--<input type="number" class="idea_number_value" size="1" name="voices" min="0" value="">-->
+                    </div>
                     <div class="pr_isCurator">
                         <input type="checkbox" class="idea_number_value" name="isKurator" value="true"
                                 @if($v['is_kurator'] == 1)
@@ -236,11 +259,9 @@
                                 @endif
                         >
                     </div>
-                    <div class="pr_weight">
-                        <input type="number" class="idea_number_value" size="1" name="voices" min="0" value="{{ $v['total_voices'] }}">
-                    </div>
                     <div class="pr_delete">
-                        <i class="fa fa-times-circle idea_delete"></i>
+                        <i class="fa fa-pencil idea_delete" id="participant_edit"></i>
+                        <i class="fa fa-times-circle idea_delete" id="participant_delete"></i>
                     </div>
                 </div>
 
@@ -248,7 +269,7 @@
                 @endforeach
 
                 <div id="participant_add" class="pr_add">
-                    <i class="fa fa-plus-square idea_add"></i>
+                    <i id="participant_add" class="fa fa-plus-square idea_add"></i>
                 </div>
             </div>
         </div>

@@ -99,8 +99,42 @@ $(document).ready(function () {
 
     $btnAddIdea.on('click', function () {
         $id = $.trim($('#id_task')[0].value);
-        console.log($id);
         $(location).attr('href', '/note0?id_task='+$id);
+
+        return true
+    });
+
+    var $btnAddParticipant = $('#participant_add');
+
+    $btnAddParticipant.on('click', function () {
+        $id = $.trim($('#id_task')[0].value);
+
+        elem_btn = $(this);
+        elem_row = $("<div/>", {
+            "class": "process_row"
+        }).insertBefore(elem_btn);
+        elem_line = $("<div/>", {
+            "class": "line_separate"
+        }).insertAfter(elem_row);
+
+        elem_idparticipant = $("<input/>", {
+            "type": "hidden",
+            "name": "participant_id",
+            "value": 0,
+            "class": "participant_id"
+        }).appendTo(elem_row);
+
+        elem_numberTotal = $('#number_participants');
+        console.log(elem_numberTotal.text());
+        numTotal = elem_numberTotal.text();
+
+        elem_prnumber = $("<div/>", {
+            "class": "pr_number"
+        }).insertAfter(elem_idparticipant);
+        elem_number = $("<div/>", {
+            "class": "idea_number_value",
+            "text": numTotal
+        }).appendTo(elem_prnumber);
 
         return true
     });
