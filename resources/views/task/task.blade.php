@@ -229,16 +229,18 @@
                     @if(true == true)
                         <div class="btn-group edit_participant">
                             <div class="btn btn-default btn-width">
-                                <div class="select_text" id="select_text_type">{{ $info['type'] }}</div>
+                                <input type="hidden" class="select_id_participant" name="select_id_participant" value={{ $v['id_user'] }}>
+                                <div class="select_text select_participant">{{ $v['info'] }}</div>
                             </div>
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                                 <span class="sr-only">Меню с переключением</span>
                             </button>
                             <ul class="dropdown-menu btn-width-list" role="menu" id="ctrlType">
-                                @foreach($types as $keyP=>$vP)
-                                    <li><div class="menu_item_dropdown menu_item_dropdown_type">
-                                            <div class="option_text">{{ $vP['name'] }}</div>
+                                @foreach($projectParticipants as $keyP=>$vP)
+                                    <li><div class="menu_item_dropdown menu_item_dropdown_participant">
+                                            <input type="hidden" class="id_participant" name="id_participant" value={{ $vP['id_user'] }}>
+                                            <div class="option_text">{{ $vP['info'] }}</div>
                                         </div></li>
                                 @endforeach
                             </ul>

@@ -77,6 +77,23 @@ class User extends Authenticatable
         return $mUsers;
     }
 
+    public function getUsersByProject(int $id_project) {
+        $Users = User::rightJoin('project_users', 'project_users.id_user', '=', 'users.id')
+            ->select('users.id as id_user')
+            ->where('project_users.id_project','=', $id_project)
+            ->get()->toArray();
+
+        $mUsers = [];
+        foreach ($Users as $Key => $User) {
+            $mUsers[$Key]['id_user'] = $User['id_user'];
+
+            $objUser = User::findOrFail($User['id_user'])->toArray();
+            $mUsers[$Key]['info'] = User::getUserInfo($objUser['lastname'], $objUser['firstname'], $objUser['middlename'], $objUser['name']);
+        }
+
+        return $mUsers;
+    }
+
     public function getUserInfo($user_lastname, $user_firstname, $user_middlename, $user_name) {
         if (!(isset($user_lastname)) || !(isset($user_firstname)) || !(isset($user_middlename)) ||
             $user_lastname == "" || $user_firstname == "" || $user_middlename == "") {
