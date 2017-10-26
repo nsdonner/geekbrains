@@ -58,6 +58,7 @@ class TaskController extends Controller
             }
 
             $participants = $objUser->getUsersByTask($arguments);
+            $projectParticipants = $objUser->getUsersByProject($info['id_project']);
 
             $isNew = false;
         }
@@ -80,6 +81,7 @@ class TaskController extends Controller
             $mIdeas = [];
             $mComments = [];
             $participants = [];
+            $projectParticipants = [];
             $isNew = true;
         }
 
@@ -97,6 +99,7 @@ class TaskController extends Controller
             'currentUser' => $current_user,
             'comments' => $mComments,
             'participants' => $participants,
+            'projectParticipants' => $projectParticipants,
             'number_participants' => count($participants),
             'general' => $general,
             'js' => $js];

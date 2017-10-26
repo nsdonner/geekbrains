@@ -6,6 +6,17 @@ function selectItemType() {
     $('#select_text_type').html($(this, '.option_text').html());
 }
 
+function selectItemParticipant() {
+    elemIdParticipant = $(this).parent().parent().parent().find(".btn-default").find(".select_id_participant")[0];
+    elemParticipant = $(this).parent().parent().parent().find(".btn-default").find(".select_participant");
+
+    elemOptIdParticipant = $(this).find(".id_participant");
+    elemOptParticipant = $(this).find(".option_text");
+
+    $(elemIdParticipant).val($(elemOptIdParticipant)[0].value);
+    $(elemParticipant).text($.trim($(elemOptParticipant)[0].textContent));
+}
+
 function lightItem() {
     $('.menu_item_dropdown').css({
         color: 'black',
@@ -99,8 +110,42 @@ $(document).ready(function () {
 
     $btnAddIdea.on('click', function () {
         $id = $.trim($('#id_task')[0].value);
-        console.log($id);
         $(location).attr('href', '/note0?id_task='+$id);
+
+        return true
+    });
+
+    var $btnAddParticipant = $('#participant_add');
+
+    $btnAddParticipant.on('click', function () {
+        $id = $.trim($('#id_task')[0].value);
+
+        elem_btn = $(this);
+        elem_row = $("<div/>", {
+            "class": "process_row"
+        }).insertBefore(elem_btn);
+        elem_line = $("<div/>", {
+            "class": "line_separate"
+        }).insertAfter(elem_row);
+
+        elem_idparticipant = $("<input/>", {
+            "type": "hidden",
+            "name": "participant_id",
+            "value": 0,
+            "class": "participant_id"
+        }).appendTo(elem_row);
+
+        elem_numberTotal = $('#number_participants');
+        console.log(elem_numberTotal.text());
+        numTotal = elem_numberTotal.text();
+
+        elem_prnumber = $("<div/>", {
+            "class": "pr_number"
+        }).insertAfter(elem_idparticipant);
+        elem_number = $("<div/>", {
+            "class": "idea_number_value",
+            "text": numTotal
+        }).appendTo(elem_prnumber);
 
         return true
     });
@@ -208,6 +253,7 @@ $(document).ready(function () {
 
     $('.menu_item_dropdown_status').on('click', selectItemStatus);
     $('.menu_item_dropdown_type').on('click', selectItemType);
+    $('.menu_item_dropdown_participant').on('click', selectItemParticipant);
     $('.menu_item_dropdown').hover(lightItem);
 
     $('.msg_delete').on('click', deleteComment);
