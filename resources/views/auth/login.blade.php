@@ -55,6 +55,7 @@
     <label for="inputPassword" class="sr-only">Пароль</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Пароль" required>
     <div class="checkbox">
+        <a href="{{asset('/register')}}">Регистрация</a>
         <label>
             <input type="checkbox" value="remember-me"> Remember me
         </label>
