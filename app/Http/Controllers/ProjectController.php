@@ -23,7 +23,6 @@ class ProjectController extends Controller
             $members = $projectUsers->GetProjectUsers($arguments);
             $tasks = new Task();
             $tasks = $tasks->TasksForProject($project);
-            dump($tasks);
             return view('project.project', compact('members', 'project','tasks','kurator'));
         }else {
             return abort(404);

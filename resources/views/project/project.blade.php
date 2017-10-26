@@ -13,6 +13,9 @@
         table tr {
             border:1px solid #eaeaea;
         }
+        table th,table td {
+            padding:20px;
+        }
         .card-text {
             padding:20px;
         }
@@ -25,7 +28,10 @@
         .addtask {
             margin:20px;
         }
-
+        .invite-btn {
+            height:40px;
+            margin-top:34px;
+        }
     </style>
 @stop
 
@@ -100,7 +106,7 @@
                         <input type="text" name="inviteUser" class="form-control" id="inviteUser" placeholder="Напишите #ID">
                     </div>
 
-                    <button class="btn btn-success" type="submit">Пригласить</button>
+                    <button class="btn btn-success invite-btn" type="submit">Пригласить</button>
                 </div>
                 {!! Form::close() !!}
                 <table class="memberdiv col-md-8">
@@ -108,12 +114,21 @@
                     <tr>
                         <th>Имя участника</th>
                         <th>Куратор?</th>
+                        <th>Удалить участника</th>
                     </tr>
                         @foreach($members as $v)
-                            <tr>
-                                <td><a href="/id{{$v['id_user']}}">{{ $v['name']}}</a></td>
-                                <td>@if($v['is_kurator'] == 1) Да @else Нет @endif</td>
-                            </tr>
+                                @if($kurator == 1)
+                                <tr>
+                                    <td><a href="/id{{$v['id_user']}}">{{ $v['name']}}</a></td>
+                                    <td>@if($v['is_kurator'] == 1) Да @else Нет @endif</td>
+                                    <td>@if($v['is_kurator'] == 0 )<button class="btn btn-danger">x</button> @endif</td>
+                                </tr>
+                                @else
+                                <tr>
+                                    <td><a href="/id{{$v['id_user']}}">{{ $v['name']}}</a></td>
+                                    <td>@if($v['is_kurator'] == 1) Да @else Нет @endif</td>
+                                </tr>
+                                @endif
                         @endforeach
                     @endif
                 </table>
