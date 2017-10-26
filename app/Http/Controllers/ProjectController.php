@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Validator;
+use App\Task;
 use App\Project;
 use App\Project_User as ProjectUser;
 
@@ -20,7 +21,10 @@ class ProjectController extends Controller
             $projectUsers = new ProjectUser();
             $kurator = $projectUsers->isKurator(Auth::id(),$project['id']);
             $members = $projectUsers->GetProjectUsers($arguments);
-            return view('project.project', compact('members', 'project','kurator'));
+            $tasks = new Task();
+            $tasks = $tasks->TasksForProject($project);
+            dump($tasks);
+            return view('project.project', compact('members', 'project','tasks','kurator'));
         }else {
             return abort(404);
         }

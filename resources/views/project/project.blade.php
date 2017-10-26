@@ -13,6 +13,19 @@
         table tr {
             border:1px solid #eaeaea;
         }
+        .card-text {
+            padding:20px;
+        }
+        .card-header {
+            text-align:center;
+        }
+        .card-item {
+            margin-bottom:40px;
+        }
+        .addtask {
+            margin:20px;
+        }
+
     </style>
 @stop
 
@@ -50,49 +63,34 @@
         <div class="tab-content">
             <div class="tab-pane active" id="tasks-tab" role="tabpanel">
                     @if(isset($kurator) && $kurator == 1)
-                    <a class="btn btn-success" href="/task0?id_project={{$project['id']}}">Добавить задачу</a>
+                    <a class="btn btn-success addtask" href="/task0?id_project={{$project['id']}}">Добавить задачу</a>
                     @endif
-                    <div class="card-group">
-                    <a href="#" class="card" id="brainstorming-card">
-                        <div class="card-header"></div>
-                        <div class="card-body">
-                            <h4 class="card-title">Мозговой штурм</h4>
-                            <div class="card-text">
-                                <ul>
-                                    <li>Главное — количество идей. Не делайте никаких ограничений</li>
-                                    <li>Не критекуйте идеи</li>
-                                    <li>Необычные и даже абсурдные идеи приветствуются</li>
-                                </ul>
+                    <div class="card-group container-fluid">
+                        @foreach($tasks as $v)
+                            <div class="col-md-6 card-item">
+                                <a href="/task{{$v['id']}}" class="card" >
+                                    <div class="card-header">
+                                        <h1>{{$v['name']}}</h1>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{$v['description']}}</h4>
+                                        <div class="card-text">
+                                            <ul>
+                                                <li>Дата создания: {{$v['date_create']}}</li>
+                                                <li style="color:red">Дедлайн: {{$v['deadline']}}</li>
+                                                <li>Создатель: {{$v['user_name']}}</li>
+                                                <li>Статус: {{$v['type']}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer"></div>
+                                </a>
                             </div>
-                        </div>
-                        <div class="card-footer"></div>
-                    </a>
-                    <a href="#" class="card" id="discussion-card">
-                        <div class="card-header">
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Обсуждение</h4>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A eos exercitationem fugiat ratione.
-                                Dicta ducimus et ipsum labore officiis quasi quia repudiandae sapiente vitae voluptas. Accusamus
-                                at autem odit ratione.
-                            </p>
-
-                        </div>
-                        <div class="card-footer"></div>
-                    </a>
-                    <a href="#" class="card" id="vote-card">
-                        <div class="card-header bg-success">
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Голосование</h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi
-                                assumenda, atque aut, beatae eaque fuga fugiy.
-                            </p>
-                        </div>
-                        <div class="card-footer"></div>
-                    </a>
-                </div>
+                        @endforeach
+                        @if($tasks == [])
+                            <p>У Вас пока нету задач</p>
+                        @endif
+                    </div>
             </div>
             <div class="tab-pane" id="members-tab" role="tabpanel">
                 {!!  Form::open(['url' => '/project/'.$project['id'].'/memberinvite','method' =>'post' ]) !!}

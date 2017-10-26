@@ -31,7 +31,18 @@ class Task extends Model
 
         return $task[0];
     }
+    public function TasksForProject($project) {
+        $tasks = Task::select('tasks.id', 'tasks.name as name', 'tasks.description', 'tasks.result', 'statuses.name as status',
+            'tasks.deadline as deadline', 'users.lastname as user_lastname', 'users.firstname as user_firstname',
+            'users.middlename as user_middlename', 'users.email as user_email', 'users.name as user_name',
+            'tasks.date_create as date_create', 'types.name as type')
+            ->leftJoin('statuses', 'tasks.id_status', '=', 'statuses.id')
+            ->leftJoin('users', 'tasks.id_author', '=', 'users.id')
+            ->leftJoin('types', 'tasks.id_type', '=', 'types.id')
+            ->where('id_project',$project)->get()->toArray();
 
+        return $tasks;
+    }
     public function getNewTask() {
         $task = [];
 
