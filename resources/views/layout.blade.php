@@ -57,21 +57,14 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="{{ asset('/img/slider_screen.png')}}" alt="idea">iDeaHub</a>
+            <a class="navbar-brand" href="{{asset('/')}}"><img src="{{ asset('/img/slider_screen.png')}}" alt="idea">iDeaHub</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Проект</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Контакты</a>
-                    </li>
                 </ul>
-
                 @auth
                     <div id="header-bell"><button class="btn btn-outline-primary"><i class="fa fa-bell" aria-hidden="true"></i></button></div>
                     <div class="dropdown">
