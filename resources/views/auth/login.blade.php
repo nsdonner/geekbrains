@@ -55,11 +55,11 @@
     <label for="inputPassword" class="sr-only">Пароль</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Пароль" required>
     <div class="checkbox">
-        <a href="{{asset('/register')}}">Регистрация</a>
-        <label>
+        <label style="float:left" >
             <input type="checkbox" value="remember-me"> Remember me
         </label>
     </div>
+        <a style='float:right' href="{{asset('/register')}}">Регистрация</a>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </main>
